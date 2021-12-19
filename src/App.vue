@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Header from "@/views/partials/header"
-import Footer from "@/views/partials/footer"
+import Header from "@/components/partials/header"
+import Footer from "@/components/partials/footer"
 
 export default {
   components: {
