@@ -1,44 +1,73 @@
 <template>
-  <script type="application/json">
-  {"errors": {
-    "username": ["Fill this field"],
-    "password": ["Fill this field"]
-  }}
-  </script>
-
   <div class="container">
     <main class="p-4">
       <h1>Login</h1>
       {{ message }}
-      <form action="/login" method="post" class="needs-validation" novalidate>
+      <form class="needs-validation" novalidate>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="mb-3">
           <label for="username" class="form-label">User name</label>
           <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30" required>
           <div class="invalid-feedback">
-            {{errors.username[errorIndexes[0]]}}
+            {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
-          <input :type="showPassword ? 'text':'password'" class="form-control d-inline-block" id="password1" name="password" minlength="8" maxlength="30" required>
-          <i @click="showPassword = !showPassword" style="margin: 5.5px 0 5.5px -30px;" :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"></i>
+          <input :type="showPassword ? 'text':'password'" class="form-control d-inline-block" id="password1"
+                 name="password" minlength="8" maxlength="30" required>
+          <i @click="showPassword = !showPassword" style="margin: 5.5px 0 5.5px -30px;"
+             :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"></i>
           <div class="invalid-feedback">
-            {{errors.password[errorIndexes[1]]}}
+            {{ errors.password[errorIndexes[1]] }}
           </div>
         </div>
         <button class="btn btn-primary" type="submit">Sign in</button>
       </form>
       <br>
-      <a href="/registration">Registration</a>
-      <a href="/password/restore">Forgot a password?</a>
+      <router-link to="/registration">Registration</router-link>
+      <router-link to="/password/restore">Forgot a password?</router-link>
     </main>
   </div>
 </template>
 
 <script>
+import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "@/validation/rules";
+import router from "@/router";
+
 export default {
   data() {
-    return {}
+    return {
+      errors: {
+        username: ["Fill this field"],
+        password: ["Fill this field"]
+      },
+      errorIndexes: [-1, -1, -1, -1],
+      showPassword: false
+    }
   },
+  mounted() {
+    let form = document.getElementsByClassName("needs-validation")[0]
+
+    form.username.addEventListener('input', () => {
+      this.errorIndexes[0] = usernameValidation(form.username.value)
+      classUpdate(form.username, this.errorIndexes[0])
+    })
+
+    form.password.addEventListener('input', () => {
+      this.errorIndexes[2] = passwordValidation(form.password.value)
+      classUpdate(form.password, this.errorIndexes[2])
+    }, false)
+
+    form.addEventListener('submit', (event) => {
+      for (let i = 1; i < form.length - 1; i++) {
+        this.errorIndexes[i - 1] = isEmptyValidation(form[i].value, this.errorIndexes[i - 1])
+        classUpdate(form[i], this.errorIndexes[i - 1])
+      }
+
+      if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
+      else this.store.login(form.username, form.password) // FIXME axios
+      router.replace("/home")
+    }, false)
+  }
 }
 </script>

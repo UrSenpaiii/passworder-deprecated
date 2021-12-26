@@ -10,9 +10,6 @@ export let classUpdate = (field, errorIndex) => {
     field.classList.remove("is-invalid", "is-valid")
     if (field.value) field.classList.add(errorIndex >= 0 ? "is-invalid" : "is-valid")
     if (errorIndex !== -1) field.classList.add(errorIndex >= 0 ? "is-invalid" : "is-valid")
-    console.log(field.classList)
-    console.log(field.value)
-    console.log(errorIndex)
 }
 
 export let usernameValidation = (username) => {

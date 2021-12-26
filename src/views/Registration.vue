@@ -1,35 +1,8 @@
 <template>
-  <script type="application/json">{
-    "errors": {
-      "username": [
-        "Fill this field",
-        "username length"
-      ],
-      "email": [
-        "Fill this field",
-        "email length",
-        "email regexp"
-      ],
-      "password": [
-        "Fill this field",
-        "password length",
-        "password lowercase",
-        "password uppercase",
-        "password digits",
-        "password spec chars"
-      ],
-      "password2": [
-        "Fill this field",
-        "password not equals"
-      ]
-    }
-  }</script>
-
   <div class="container">
     <main class="p-4">
       <h1>Registration</h1>
-      ${message!}
-      <form action="/registration" method="post" class="needs-validation">
+      <form class="needs-validation">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="mb-3">
           <label for="username" class="form-label">User name</label>
@@ -51,7 +24,7 @@
           <label for="password1" class="form-label">Password</label>
           <input :type="showPassword ? 'text':'password'" class="form-control d-inline-block" id="password1"
                  name="password" pattern="[@$!%*?&a-zA-Z0-9]+" minlength="8" maxlength="30" required>
-          <i @click="showPassword = !showPassword" style="margin: 5.5px 0 5.5px -30px;"
+          <i @click="showPassword = !showPassword" style="margin: 6px 0 6px -30px;"
              :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"></i>
           <div class="invalid-feedback">
             {{ errors.password[errorIndexes[2]] }}
@@ -68,8 +41,8 @@
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
       <br>
-      <a href="/login">Already have an account?</a>
-      <a href="#" @click.prevent="formFill()">Fill</a>
+      <router-link to="/login">Already have an account?</router-link>
+      <button class="btn" @click.prevent="formFill()">Fill</button>
     </main>
   </div>
 </template>
@@ -83,11 +56,37 @@ import {
   passwordsValidation,
   isEmptyValidation
 } from "@/validation/rules"
+import router from "@/router";
+
+let form = document.getElementsByClassName("needs-validation")[0]
 
 export default {
   name: "Registration",
   data: () => {
     return {
+      errors: {
+        username: [
+          "Fill this field",
+          "username length"
+        ],
+        email: [
+          "Fill this field",
+          "email length",
+          "email regexp"
+        ],
+        password: [
+          "Fill this field",
+          "password length",
+          "password lowercase",
+          "password uppercase",
+          "password digits",
+          "password spec chars"
+        ],
+        password2: [
+          "Fill this field",
+          "password not equals"
+        ]
+      },
       errorIndexes: [-1, -1, -1, -1],
       showPassword: false
     }
@@ -98,29 +97,30 @@ export default {
           .forEach((form) => {
             form.username.value = "test"
             form.email.value = "sd@sa.sd"
-            form.password.value = "aA1!aaaa"
-            form.password2.value = "aA1!aaaa"
+            form.password.value = "aA1!asap"
+            form.password2.value = "aA1!asap"
           })
     }
   },
   mounted() {
+
     let form = document.getElementsByClassName("needs-validation")[0]
 
     form.username.addEventListener('input', () => {
-      Vue.set(this.errorIndexes, 0, usernameValidation(form.username.value))
+      this.errorIndexes[0] = usernameValidation(form.username.value)
       classUpdate(form.username, this.errorIndexes[0])
     }, false)
 
     form.email.addEventListener('input', () => {
-      Vue.set(this.errorIndexes, 1, emailValidation(form.email.value))
+      this.errorIndexes[1] = emailValidation(form.email.value)
       classUpdate(form.email, this.errorIndexes[1])
     }, false)
 
     form.password.addEventListener('input', () => {
-      Vue.set(this.errorIndexes, 2, passwordValidation(form.password.value))
+      this.errorIndexes[2] = passwordValidation(form.password.value)
 
       if (form.password2.value) {
-        Vue.set(this.errorIndexes, 3, passwordsValidation(form.password.value, form.password2.value))
+        this.errorIndexes[3] = passwordsValidation(form.password.value, form.password2.value)
         classUpdate(form.password2, this.errorIndexes[3])
       }
 
@@ -128,19 +128,19 @@ export default {
     }, false)
 
     form.password2.addEventListener('input', () => {
-      Vue.set(this.errorIndexes, 3, passwordsValidation(form.password.value, form.password2.value))
+      this.errorIndexes[3] = passwordsValidation(form.password.value, form.password2.value)
       classUpdate(form.password2, this.errorIndexes[3])
     }, false)
 
     form.addEventListener('submit', (event) => {
       for (let i = 1; i < form.length - 1; i++) {
-        Vue.set(this.errorIndexes, i - 1, isEmptyValidation(form[i].value, this.errorIndexes[i - 1]))
+        this.errorIndexes[i - 1] = isEmptyValidation(form[i].value, this.errorIndexes[i - 1])
         classUpdate(form[i], this.errorIndexes[i - 1])
       }
 
-      console.log(this.errorIndexes)
-
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
+      else this.store.registration(form.username, form.email) // FIXME axios
+      router.replace("/login")
     }, false)
   }
 }

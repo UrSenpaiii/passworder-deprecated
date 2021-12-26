@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-4 bg-dark text-center text-white">
+  <footer class="bg-dark text-center text-white">
     <section class="container">
       <router-link to="#" class="bi-facebook mx-2"></router-link>
       <router-link to="#" class="bi-twitter mx-2"></router-link>
