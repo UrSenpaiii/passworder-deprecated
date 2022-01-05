@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <router-link to="/" class="navbar-brand">Passworder</router-link>
+        <NuxtLink to="/" class="navbar-brand">Passworder</NuxtLink>
         <div class="navbar-nav me-auto">
           <div class="nav-item input-group">
             <input type="text" class="form-control border-0" placeholder="Search" aria-label="Search">
@@ -11,11 +11,11 @@
         </div>
         <div class="d-flex" v-if="store.user">
           <i class="h2 text-white bi-person-circle"></i>
-          <router-link to="/profile" class="nav-link text-white">{{ store.user }}</router-link>
+          <NuxtLink to="/profile" class="nav-link text-white">{{ store.user }}</NuxtLink>
         </div>
         <div v-else>
-          <router-link to="/registration" class="btn btn-light">Sign up</router-link>
-          <router-link to="/login" class="btn btn-outline-light">Login</router-link>
+          <NuxtLink to="/registration" class="btn btn-light">Sign up</NuxtLink>
+          <NuxtLink to="/login" class="btn btn-outline-light">Login</NuxtLink>
         </div>
       </div>
     </nav>

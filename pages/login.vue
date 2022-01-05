@@ -24,15 +24,14 @@
         <button class="btn btn-primary" type="submit">Sign in</button>
       </form>
       <br>
-      <router-link to="/registration">Registration</router-link>
-      <router-link to="/password/restore">Forgot a password?</router-link>
+      <NuxtLink to="/registration">Registration</NuxtLink>
+      <NuxtLink to="/password/restore">Forgot a password?</NuxtLink>
     </main>
   </div>
 </template>
 
 <script>
-import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "@/validation/rules";
-import router from "@/router";
+import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "@/assets/rules";
 
 export default {
   data() {
@@ -66,7 +65,7 @@ export default {
 
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
       else this.store.login(form.username, form.password) // FIXME axios
-      router.replace("/home")
+      this.$router.replace("/home")
     }, false)
   }
 }

@@ -41,7 +41,7 @@
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
       <br>
-      <router-link to="/login">Already have an account?</router-link>
+      <NuxtLink to="/login">Already have an account?</NuxtLink>
       <button class="btn" @click.prevent="formFill()">Fill</button>
     </main>
   </div>
@@ -55,8 +55,7 @@ import {
   passwordValidation,
   passwordsValidation,
   isEmptyValidation
-} from "@/validation/rules"
-import router from "@/router";
+} from "@/assets/rules"
 
 let form = document.getElementsByClassName("needs-validation")[0]
 
@@ -140,7 +139,7 @@ export default {
 
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
       else this.store.registration(form.username, form.email) // FIXME axios
-      router.replace("/login")
+      this.$router.replace("/login")
     }, false)
   }
 }

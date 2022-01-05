@@ -12,8 +12,6 @@
             <th scope="col">Password</th>
             <th scope="col">Active</th>
             <th scope="col">Roles</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
           </tr>
           </thead>
           <tbody>
@@ -33,7 +31,7 @@
           </tbody>
         </table>
       </div>
-      <router-link to="/home">home page</router-link>
+      <NuxtLink to="/home">home page</NuxtLink>
     </main>
   </div>
 </template>
