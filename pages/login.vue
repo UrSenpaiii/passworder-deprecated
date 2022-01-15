@@ -34,16 +34,14 @@
 import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "@/assets/rules";
 
 export default {
-  data() {
-    return {
-      errors: {
-        username: ["Fill this field"],
-        password: ["Fill this field"]
-      },
-      errorIndexes: [-1, -1, -1, -1],
-      showPassword: false
-    }
-  },
+  data: () => ({
+    errors: {
+      username: ["Fill this field"],
+      password: ["Fill this field"]
+    },
+    errorIndexes: [-1, -1, -1, -1],
+    showPassword: false
+  }),
   mounted() {
     let form = document.getElementsByClassName("needs-validation")[0]
 

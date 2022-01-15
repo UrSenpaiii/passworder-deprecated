@@ -5,13 +5,10 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {}
-  },
-}
+  export default {
+    data: () => ({})
+  }
 </script>
 
 <style scoped>
-
 </style>

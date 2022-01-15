@@ -9,13 +9,14 @@
       <NuxtLink to="#" class="bi-github mx-2"></NuxtLink>
     </section>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © {{ new Date().getFullYear() }} Copyright: <NuxtLink to="/">Passworder.com</NuxtLink>
+      © {{ new Date().getFullYear() }} Copyright: <NuxtLink to="/">{{sitename}}</NuxtLink>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
+  data: () => ({sitename: process.env.name}),
   name: "Footer"
 }
 </script>

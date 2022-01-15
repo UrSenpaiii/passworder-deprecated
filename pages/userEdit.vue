@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <main class="p-4">
       <form action="/user" method="post" class="col-1">
@@ -24,10 +23,8 @@
 </template>
 
 <script>
-export default {
-  name: "UserEdit",
-  data: () => {
-    return {
+  export default {
+    data: () => ({
       user: {
         id: 0,
         username: "Admin",
@@ -36,7 +33,6 @@ export default {
         roles: ["USER", "ADMIN"]
       },
       roles: ["USER", "ADMIN"]
-    }
+    })
   }
-}
 </script>

@@ -9,9 +9,9 @@
             <span class="input-group-text bg-white border-0" id="basic-addon1"><i class="bi bi-search"></i></span>
           </div>
         </div>
-        <div class="d-flex" v-if="store.user">
+        <div class="d-flex" v-if="true">
           <i class="h2 text-white bi-person-circle"></i>
-          <NuxtLink to="/profile" class="nav-link text-white">{{ store.user }}</NuxtLink>
+          <NuxtLink to="/profile" class="nav-link text-white">USERNAME's here</NuxtLink>
         </div>
         <div v-else>
           <NuxtLink to="/registration" class="btn btn-light">Sign up</NuxtLink>

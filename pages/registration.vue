@@ -60,9 +60,7 @@ import {
 let form = document.getElementsByClassName("needs-validation")[0]
 
 export default {
-  name: "Registration",
-  data: () => {
-    return {
+  data: () => ({
       errors: {
         username: [
           "Fill this field",
@@ -88,8 +86,7 @@ export default {
       },
       errorIndexes: [-1, -1, -1, -1],
       showPassword: false
-    }
-  },
+  }),
   methods: {
     formFill() {
       document.querySelectorAll('.needs-validation')
