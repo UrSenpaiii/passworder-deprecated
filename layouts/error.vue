@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <Header/>
-    <Nuxt/>
-    <Footer/>
-  </div>
+  <h1>ERROR!!!</h1>
 </template>
 
 <script>
 export default {
   data() {
     return {}
-  }
+  },
 }
 </script>
 

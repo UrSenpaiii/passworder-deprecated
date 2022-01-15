@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Aside from "@/components/partials/Aside"
+import Aside from "~/components/Aside"
 
 export default {
   name: 'Home',
