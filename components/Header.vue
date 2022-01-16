@@ -24,10 +24,8 @@
 
 <script>
 export default {
-  data: () => {
-    return {
-      username: "ЗАТЫЧКА" // FIXME
-    }
-  }
+  data: () => ({
+    username: "ЗАТЫЧКА" // FIXME
+  })
 }
 </script>

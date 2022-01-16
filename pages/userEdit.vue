@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <main class="p-4">
       <form action="/user" method="post" class="col-1">
@@ -12,7 +11,7 @@
         </div>
         <div class="mb-3 form-check">
           <div v-for="(role, i) in roles">
-            <label class="form-check-label" :for="i">{{role}}</label>
+            <label class="form-check-label" :for="i">{{ role }}</label>
             <input type="checkbox" class="form-check-input" :id="i" :name="role"
                    :checked="user.roles.includes(role)">
           </div>
@@ -25,18 +24,15 @@
 
 <script>
 export default {
-  name: "UserEdit",
-  data: () => {
-    return {
-      user: {
-        id: 0,
-        username: "Admin",
-        password: "1234",
-        active: true,
-        roles: ["USER", "ADMIN"]
-      },
+  data: () => ({
+    user: {
+      id: 0,
+      username: "Admin",
+      password: "1234",
+      active: true,
       roles: ["USER", "ADMIN"]
-    }
-  }
+    },
+    roles: ["USER", "ADMIN"]
+  })
 }
 </script>

@@ -38,24 +38,21 @@
 
 <script>
 export default {
-  name: "AdminPanel",
-  data: () => {
-    return {
-      users: [{
-        id: 0,
-        username: "Admin",
-        password: "1234",
+  data: () => ({
+    users: [{
+      id: 0,
+      username: "Admin",
+      password: "1234",
+      active: true,
+      roles: ["USER", "ADMIN"]
+    },
+      {
+        id: 1,
+        username: "User",
+        password: "123",
         active: true,
-        roles: ["USER", "ADMIN"]
-      },
-        {
-          id: 1,
-          username: "User",
-          password: "123",
-          active: true,
-          roles: ["USER"]
-        }]
-    }
-  }
+        roles: ["USER"]
+      }]
+  })
 }
 </script>

@@ -6,7 +6,8 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="mb-3">
           <label for="username" class="form-label">User name</label>
-          <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30" required>
+          <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30"
+                 required>
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
@@ -57,48 +58,43 @@ import {
   isEmptyValidation
 } from "@/assets/rules"
 
-let form = document.getElementsByClassName("needs-validation")[0]
-
 export default {
-  name: "Registration",
-  data: () => {
-    return {
-      errors: {
-        username: [
-          "Fill this field",
-          "username length"
-        ],
-        email: [
-          "Fill this field",
-          "email length",
-          "email regexp"
-        ],
-        password: [
-          "Fill this field",
-          "password length",
-          "password lowercase",
-          "password uppercase",
-          "password digits",
-          "password spec chars"
-        ],
-        password2: [
-          "Fill this field",
-          "password not equals"
-        ]
-      },
-      errorIndexes: [-1, -1, -1, -1],
-      showPassword: false
-    }
-  },
+  data: () => ({
+    errors: {
+      username: [
+        "Fill this field",
+        "username length"
+      ],
+      email: [
+        "Fill this field",
+        "email length",
+        "email regexp"
+      ],
+      password: [
+        "Fill this field",
+        "password length",
+        "password lowercase",
+        "password uppercase",
+        "password digits",
+        "password spec chars"
+      ],
+      password2: [
+        "Fill this field",
+        "password not equals"
+      ]
+    },
+    errorIndexes: [-1, -1, -1, -1],
+    showPassword: false
+  }),
   methods: {
     formFill() {
       document.querySelectorAll('.needs-validation')
-          .forEach((form) => {
-            form.username.value = "test"
-            form.email.value = "sd@sa.sd"
-            form.password.value = "aA1!asap"
-            form.password2.value = "aA1!asap"
-          })
+        .forEach((form) => {
+          form.username.value = "test"
+          form.email.value = "sd@sa.sd"
+          form.password.value = "aA1!asap"
+          form.password2.value = "aA1!asap"
+        })
     }
   },
   mounted() {

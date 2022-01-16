@@ -9,14 +9,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import Aside from "~/components/Aside"
-
-export default {
-  name: 'Home',
-  components: {
-    Aside
-  }
-}
-</script>
