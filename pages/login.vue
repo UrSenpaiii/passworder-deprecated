@@ -2,8 +2,7 @@
   <div class="container">
     <main class="p-4">
       <h1>Login</h1>
-      {{ message }}
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation" novalidate method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="mb-3">
           <label for="username" class="form-label">User name</label>
@@ -42,6 +41,13 @@ export default {
     errorIndexes: [-1, -1, -1, -1],
     showPassword: false
   }),
+  methods: {
+    loginUser(user) {
+      this.$auth.loginWith("refresh", {
+        data: user
+      })
+    }
+  },
   mounted() {
     let form = document.getElementsByClassName("needs-validation")[0]
 
@@ -62,7 +68,7 @@ export default {
       }
 
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
-      else this.store.login(form.username, form.password) // FIXME axios
+      else this.loginUser(form.username, form.password)
       this.$router.replace("/home")
     }, false)
   }

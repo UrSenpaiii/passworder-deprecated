@@ -44,9 +44,11 @@ body {
 }
 
 a {
+  color: $neutral-primary;
+  text-decoration: none;
   transition: all 0.15s ease;
   &:hover {
-    text-decoration: none;
+    color: $neutral-custom ;
   }
 }
 
