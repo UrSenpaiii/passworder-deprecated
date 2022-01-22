@@ -9,46 +9,48 @@ export default {
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-      {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'}
+      {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'},
+      {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'}
+    ],
+    script: [
+      {src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'}
     ]
   },
 
-  css: ["@/assets/scss/main"],
+css: ["@/assets/scss/main"],
   components: true,
 
   modules: [
     ['@nuxtjs/auth-next', {
-      auth: {
-        strategies: {
-          local: {
-            scheme: 'refresh',
-            token: {
-              property: 'access_token',
-              maxAge: 60 * 60,
-              global: true,
-            },
-            refreshToken: {
-              property: 'refresh_token',
-              data: 'refresh_token',
-              maxAge: 60 * 60 * 24 * 30
-            },
-            endpoints: {
-              login: {url: '/api/auth/login', method: 'post'},
-              refresh: {url: '/api/auth/refresh', method: 'post'},
-              user: {url: '/api/auth/user', method: 'get'},
-              logout: {url: '/api/auth/logout', method: 'post'}
-            }
+      strategies: {
+        local: {
+          scheme: 'refresh',
+          token: {
+            property: 'access_token',
+            maxAge: 60 * 60,
+            global: true,
+          },
+          refreshToken: {
+            property: 'refresh_token',
+            data: 'refresh_token',
+            maxAge: 60 * 60 * 24 * 30
+          },
+          endpoints: {
+            login: {url: '/auth/login', method: 'post'},
+            refresh: {url: '/auth/refresh', method: 'post'},
+            user: {url: '/auth/user', method: 'get'},
+            logout: {url: '/auth/logout', method: 'post'}
           }
         }
       },
     }],
     ['@nuxtjs/axios', {
-      baseURL: '/'
+      baseURL: 'http://localhost:8080/api'
     }],
     ['@nuxtjs/i18n', {
       locales: [
-        {code: 'en', iso: 'en-US', file: 'en.js', dir: 'locals'},
-        {code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'locals'}
+        {code: 'en', iso: 'en', file: 'en.js', dir: 'locals'},
+        {code: 'ru', iso: 'ru', file: 'ru.js', dir: 'locals'}
       ],
 
       defaultLocale: 'en',

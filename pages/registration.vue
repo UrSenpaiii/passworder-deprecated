@@ -64,21 +64,18 @@ export default {
       username: [
         "Fill this field",
         "username length"
-      ],
-      email: [
+      ], email: [
         "Fill this field",
         "email length",
         "email regexp"
-      ],
-      password: [
+      ], password: [
         "Fill this field",
         "password length",
         "password lowercase",
         "password uppercase",
         "password digits",
         "password spec chars"
-      ],
-      password2: [
+      ], password2: [
         "Fill this field",
         "password not equals"
       ]
