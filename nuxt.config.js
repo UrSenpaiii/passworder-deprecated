@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: 'nuxt',
+    title: 'Passworder',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -17,10 +17,13 @@ export default {
     ]
   },
 
-css: ["@/assets/scss/main"],
+  css: ["@/assets/scss/main"],
   components: true,
 
   modules: [
+    ['@nuxtjs/axios', {
+      baseURL: 'http://localhost:8080/api'
+    }],
     ['@nuxtjs/auth-next', {
       strategies: {
         local: {
@@ -29,11 +32,15 @@ css: ["@/assets/scss/main"],
             property: 'access_token',
             maxAge: 60 * 60,
             global: true,
+            type: ''
           },
           refreshToken: {
             property: 'refresh_token',
             data: 'refresh_token',
             maxAge: 60 * 60 * 24 * 30
+          },
+          user: {
+            property: false,
           },
           endpoints: {
             login: {url: '/auth/login', method: 'post'},
@@ -43,9 +50,6 @@ css: ["@/assets/scss/main"],
           }
         }
       },
-    }],
-    ['@nuxtjs/axios', {
-      baseURL: 'http://localhost:8080/api'
     }],
     ['@nuxtjs/i18n', {
       locales: [
