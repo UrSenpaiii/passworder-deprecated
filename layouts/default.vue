@@ -5,3 +5,11 @@
     <Footer/>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: "Passworder"
+  }
+}
+</script>

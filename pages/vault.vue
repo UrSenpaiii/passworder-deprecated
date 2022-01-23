@@ -18,6 +18,12 @@
 
 <script>
 export default {
+  head: {
+    title: "Vault",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Vault page'}
+    ]
+  },
   data: () => ({
     notes: [
       {

@@ -8,3 +8,13 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  head: {
+    meta: [
+      {hid: 'description', name: 'description', content: 'Main page'}
+    ]
+  }
+}
+</script>

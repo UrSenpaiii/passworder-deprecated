@@ -11,3 +11,14 @@
     </main>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    title: "Profile",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Profile page'}
+    ]
+  },
+}
+</script>

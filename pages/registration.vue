@@ -43,7 +43,6 @@
       </form>
       <br>
       <NuxtLink to="/login">Already have an account?</NuxtLink>
-      <button class="btn" @click.prevent="formFill()">Fill</button>
     </main>
   </div>
 </template>
@@ -59,43 +58,23 @@ import {
 } from "@/assets/rules"
 
 export default {
+  head: {
+    title: "Registration",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Registration page'}
+    ]
+  },
   data: () => ({
     errors: {
-      username: [
-        "Fill this field",
-        "username length"
-      ], email: [
-        "Fill this field",
-        "email length",
-        "email regexp"
-      ], password: [
-        "Fill this field",
-        "password length",
-        "password lowercase",
-        "password uppercase",
-        "password digits",
-        "password spec chars"
-      ], password2: [
-        "Fill this field",
-        "password not equals"
-      ]
+      username: ["Fill this field", "Username length"],
+      email: ["Fill this field", "Email length", "Email regexp"],
+      password: ["Fill this field", "Password length", "Password lowercase", "Password uppercase", "Password digits", "Password spec chars"],
+      password2: ["Fill this field", "Password not equals"]
     },
     errorIndexes: [-1, -1, -1, -1],
     showPassword: false
   }),
-  methods: {
-    formFill() {
-      document.querySelectorAll('.needs-validation')
-        .forEach((form) => {
-          form.username.value = "test"
-          form.email.value = "sd@sa.sd"
-          form.password.value = "aA1!asap"
-          form.password2.value = "aA1!asap"
-        })
-    }
-  },
   mounted() {
-
     let form = document.getElementsByClassName("needs-validation")[0]
 
     form.username.addEventListener('input', () => {

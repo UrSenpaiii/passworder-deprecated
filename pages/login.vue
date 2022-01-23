@@ -41,6 +41,12 @@ export default {
     errorIndexes: [-1, -1, -1, -1],
     showPassword: false
   }),
+  head: {
+    title: "Login",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Login page'}
+    ]
+  },
   methods: {
     loginUser(user) {
       this.$auth.loginWith("refresh", {
