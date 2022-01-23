@@ -3,15 +3,9 @@
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <NuxtLink to="/" class="navbar-brand">Passworder</NuxtLink>
-        <div class="navbar-nav me-auto">
-          <div class="nav-item input-group">
-            <input type="text" class="form-control border-0" placeholder="Search" aria-label="Search">
-            <span class="input-group-text bg-white border-0" id="basic-addon1"><i class="bi bi-search"></i></span>
-          </div>
-        </div>
         <div class="d-flex" v-if="$auth.loggedIn">
           <i class="h2 text-white bi-person-circle"></i>
-          <NuxtLink to="/profile" class="nav-link text-white">{{ $auth.user.username }}</NuxtLink>
+          <NuxtLink to="/profile" class="nav-link text-white">{{ $auth.user.name }}</NuxtLink>
         </div>
         <div v-else>
           <NuxtLink to="/registration" class="btn btn-light">Sign up</NuxtLink>
