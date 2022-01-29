@@ -73,6 +73,6 @@ button, .btn, .page-item {
   }
 }
 
-//.form-control {
-//  background-image: none!important;
-//}
+.form-control[name=password] {
+  background-image: none!important;
+}

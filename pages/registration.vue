@@ -2,21 +2,18 @@
   <div class="container">
     <main class="p-4">
       <h1>Registration</h1>
-      <form class="needs-validation">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+      <form class="needs-validation" novalidate method="post">
         <div class="mb-3">
           <label for="username" class="form-label">User name</label>
-          <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30"
-                 required>
+          <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30" required>
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" name="email"
-                 pattern='(?:[a-z0-9!#$%&*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])'
-                 minlength="6" maxlength="50" required>
+          <input type="email" class="form-control" id="email" name="email" minlength="6" maxlength="50" required
+                 pattern='(?:[a-z0-9!#$%&*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])'>
           <div class="invalid-feedback">
             {{ errors.email[errorIndexes[1]] }}
           </div>
@@ -104,14 +101,13 @@ export default {
     }, false)
 
     form.addEventListener('submit', (event) => {
-      for (let i = 1; i < form.length - 1; i++) {
-        this.errorIndexes[i - 1] = isEmptyValidation(form[i].value, this.errorIndexes[i - 1])
-        classUpdate(form[i], this.errorIndexes[i - 1])
+      for (let i = 0; i < form.length - 1; i++) {
+        this.errorIndexes[i] = isEmptyValidation(form[i].value, this.errorIndexes[i])
+        classUpdate(form[i], this.errorIndexes[i])
       }
 
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
       else this.store.registration(form.username, form.email) // FIXME axios
-      this.$router.replace("/login")
     }, false)
   }
 }

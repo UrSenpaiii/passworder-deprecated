@@ -67,9 +67,9 @@ export default {
 
     form.addEventListener('submit', (event) => {
       event.preventDefault()
-      for (let i = 1; i < form.length - 1; i++) {
-        this.errorIndexes[i - 1] = isEmptyValidation(form[i].value, this.errorIndexes[i - 1])
-        classUpdate(form[i], this.errorIndexes[i - 1])
+      for (let i = 0; i < form.length - 1; i++) {
+        this.errorIndexes[i] = isEmptyValidation(form[i].value, this.errorIndexes[i])
+        classUpdate(form[i], this.errorIndexes[i])
       }
 
       if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
