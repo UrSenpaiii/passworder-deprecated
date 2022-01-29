@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
+      <th scope="col">Title</th>
       <th scope="col">Login</th>
       <th scope="col">Password</th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(node, i) in notes">
+    <tr v-for="(note, i) in notes">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ node.name }}</td>
-      <td>{{ node.login }}</td>
-      <td>{{ node.password }}</td>
+      <td>{{ note.title }}</td>
+      <td>{{ note.login }}</td>
+      <td>{{ note.password }}</td>
     </tr>
     </tbody>
   </table>

@@ -18,14 +18,21 @@
           </div>
 
           <div>
-            <i class="mx-2 bi bi-folder-fill"></i>
-            <i class="mx-2 bi bi-table"></i>
-            <i class="mx-2 bi bi-card-list"></i>
-            <i class="mx-2 bi bi-grid-3x2"></i>
+            <a @click="layout='folder'" class="mx-2 btn btn-light bi bi-folder-fill"></a>
+            <a @click="layout='table'" class="mx-2 btn btn-light bi bi-table"></a>
+            <a @click="layout='list'" class="mx-2 btn btn-light bi bi-card-list"></a>
+            <a @click="layout='grid'" class="mx-2 btn btn-light bi bi-grid-3x2"></a>
           </div>
         </div>
 
-        <table-layout :notes="notes"/>
+        <folder-layout v-if="layout==='folder'" :notes="notes"/>
+        <table-layout v-if="layout==='table'" :notes="notes"/>
+        <list-layout v-if="layout==='list'"/>
+        <grid-layout v-if="layout==='grid'"/>
+
+
+
+
 
       </main>
     </div>
@@ -41,13 +48,14 @@ export default {
     ]
   },
   data: () => ({
+    layout: "folder",
     notes: [
       {
-        name: "Goole",
+        title: "Goole",
         login: "google@gmail.com",
         password: "12345678"
       }, {
-        name: "Facebook",
+        title: "Facebook",
         login: "facebook@fb.com",
         password: "87654321"
       }

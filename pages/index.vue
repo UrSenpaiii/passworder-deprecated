@@ -2,8 +2,7 @@
   <section>
     <div class="container">
       <main>
-        <h1>Hi bro</h1>
-        <NuxtLink to="/vault">home page</NuxtLink>
+        <NuxtLink to="/vault">VAULT</NuxtLink>
       </main>
     </div>
   </section>
