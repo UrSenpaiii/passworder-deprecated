@@ -8,6 +8,7 @@
       <NuxtLink to="#" class="bi-linkedin mx-2"></NuxtLink>
       <NuxtLink to="#" class="bi-github mx-2"></NuxtLink>
     </section>
+    <lang-input/>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © {{ new Date().getFullYear() }} Copyright: <NuxtLink to="/">{{sitename}}</NuxtLink>
     </div>
