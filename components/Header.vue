@@ -8,8 +8,8 @@
           <NuxtLink to="/profile" class="nav-link text-white">{{ $auth.user.name }}</NuxtLink>
         </div>
         <div v-else>
-          <NuxtLink to="/registration" class="btn btn-light">Sign up</NuxtLink>
-          <NuxtLink to="/login" class="btn btn-outline-light">Login</NuxtLink>
+          <NuxtLink to="/registration" class="btn btn-light">{{ $t('signUp') }}</NuxtLink>
+          <NuxtLink to="/login" class="btn btn-outline-light">{{ $t('login') }}</NuxtLink>
         </div>
       </div>
     </nav>

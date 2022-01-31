@@ -2,7 +2,7 @@
   <section>
     <div class="container">
       <main>
-        <NuxtLink to="/vault">VAULT</NuxtLink>
+        <NuxtLink to="/vault">{{ $t("vault") }}</NuxtLink>
       </main>
     </div>
   </section>

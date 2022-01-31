@@ -1,6 +1,7 @@
 {
+  "langName": "English",
   "login": "Login",
-  "sign up": "Sign up",
-  "user name": "User name",
+  "signUp": "Sign up",
+  "userName": "User name",
   "vault": "Vault"
 }

@@ -1,11 +1,12 @@
 <template>
   <div class="lang-dropdown">
-    <select v-model="$i18n.locale">
-      <option
-        v-for="lang in $i18n.locales"
-        :key="lang.code"
-        :value="lang.code"
-      >{{ lang.name }}</option>
-    </select>
+    <nuxt-link v-for="local in $i18n.locales" :to="switchLocalePath(local.code)"
+               :src="require(`assets/${local.code}.svg`)" class="m-1" width="40px" tag="img" :title="local.name"/>
   </div>
 </template>
+
+<style scoped lang="scss">
+img {
+  cursor: pointer;
+}
+</style>
