@@ -53,21 +53,16 @@ export default {
     }],
     ['@nuxtjs/i18n', {
       locales: [
-        {code: 'en', iso: 'en', file: 'en.js', dir: 'locals'},
-        {code: 'ru', iso: 'ru', file: 'ru.js', dir: 'locals'}
+        {code: 'en', file: 'en.json'},
+        {code: 'ru', file: 'ru.json'}
       ],
-
+      langDir: "locals",
       defaultLocale: 'en',
       vueI18n: {
         fallbackLocale: 'en',
-        messages: {
-          en: {
-            welcome: 'Welcome'
-          },
-          ru: {
-            welcome: 'Добро пожаловать'
-          }
-        }
+      },
+      detectBrowserLanguage: {
+        alwaysRedirect: true
       }
     }],
     ['@nuxtjs/pwa', {
