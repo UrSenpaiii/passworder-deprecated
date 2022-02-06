@@ -38,7 +38,7 @@
         <button class="btn btn-primary" type="submit">{{ $t("btn.submit") }}</button>
       </form>
       <br>
-      <NuxtLink to="/login">{{ $t("haveAcc") }}</NuxtLink>
+      <nuxt-link :to="localePath('/login')">{{ $t("haveAcc") }}</nuxt-link>
     </main>
   </div>
 </template>

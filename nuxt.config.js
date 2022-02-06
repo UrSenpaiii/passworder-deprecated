@@ -52,6 +52,7 @@ export default {
       },
     }],
     ["@nuxtjs/i18n", {
+      baseURL: "http://localhost:3000",
       locales: [
         {code: "en", name: "English", file: "en.json"},
         {code: "ru", name: "Russian", file: "ru.json"}

@@ -24,8 +24,8 @@
         <button class="btn btn-primary" type="submit">{{ $t("logIn") }}</button>
       </form>
       <br>
-      <NuxtLink to="/registration">{{ $t("registration") }}</NuxtLink>
-      <NuxtLink to="/password/restore">{{ $t("forgotPassword") }}</NuxtLink>
+      <nuxt-link :to="localePath('/registration')">{{ $t("registration") }}</nuxt-link>
+      <nuxt-link :to="localePath('/password/restore')">{{ $t("forgotPassword") }}</nuxt-link>
     </main>
   </div>
 </template>

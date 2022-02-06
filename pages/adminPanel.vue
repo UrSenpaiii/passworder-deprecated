@@ -31,7 +31,7 @@
           </tbody>
         </table>
       </div>
-      <NuxtLink to="/">{{ $t("index") }}</NuxtLink>
+      <nuxt-link :to="localePath('/')">{{ $t("index") }}</nuxt-link>
     </main>
   </div>
 </template>

@@ -2,14 +2,14 @@
   <header>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <NuxtLink to="/" class="navbar-brand">{{ sitename }}</NuxtLink>
+        <nuxt-link :to="localePath('/')" class="navbar-brand">{{ sitename }}</nuxt-link>
         <div class="d-flex" v-if="$auth.loggedIn">
           <i class="h2 text-white bi-person-circle"></i>
-          <NuxtLink to="/profile" class="nav-link text-white">{{ $auth.user.name }}</NuxtLink>
+          <nuxt-link :to="localePath('/profile')" class="nav-link text-white">{{ $auth.user.name }}</nuxt-link>
         </div>
         <div v-else>
-          <NuxtLink to="/registration" class="btn btn-light">{{ $t("signUp") }}</NuxtLink>
-          <NuxtLink to="/login" class="btn btn-outline-light">{{ $t("logIn") }}</NuxtLink>
+          <nuxt-link :to="localePath('/registration')" class="btn btn-light">{{ $t("signUp") }}</nuxt-link>
+          <nuxt-link :to="localePath('/login')" class="btn btn-outline-light">{{ $t("logIn") }}</nuxt-link>
         </div>
       </div>
     </nav>
