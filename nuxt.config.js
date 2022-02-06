@@ -58,9 +58,7 @@ export default {
       ],
       langDir: "locals",
       defaultLocale: 'en',
-      vueI18n: {
-        fallbackLocale: 'en',
-      },
+      vueI18n: '~/conf/i18n.js',
       detectBrowserLanguage: {
         alwaysRedirect: true
       }
