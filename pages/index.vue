@@ -10,10 +10,12 @@
 
 <script>
 export default {
-  head: {
-    meta: [
-      {hid: 'description', name: 'description', content: 'Main page'}
-    ]
+  head() {
+    return {
+      meta: [
+        {hid: "description", name: "description", content: this.$t("meta.descriptions.index")}
+      ]
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <li class="sitemap-list-item position-relative">
-    a
+
   </li>
 </template>
 
@@ -14,14 +14,14 @@ export default {
   },
   computed: {
     iconsColor() {
-      return this.sub ? '' : 'far'
+      return this.sub ? "" : "far"
     }
   },
   methods: {
     showSubBlock() {
       if (this.sub) {
         this.showSub = !this.showSub
-        event.target.classList.toggle('bi-folder-open')
+        event.target.classList.toggle("bi-folder-open")
       }
     }
   }

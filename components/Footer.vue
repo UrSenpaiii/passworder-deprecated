@@ -1,12 +1,12 @@
 <template>
   <footer class="bg-dark text-center text-white">
     <section class="container">
-      <NuxtLink to="#" class="bi-facebook mx-2"></NuxtLink>
-      <NuxtLink to="#" class="bi-twitter mx-2"></NuxtLink>
-      <NuxtLink to="#" class="bi-google mx-2"></NuxtLink>
-      <NuxtLink to="#" class="bi-instagram mx-2"></NuxtLink>
-      <NuxtLink to="#" class="bi-linkedin mx-2"></NuxtLink>
-      <NuxtLink to="#" class="bi-github mx-2"></NuxtLink>
+      <NuxtLink to="#" class="bi-facebook mx-2"/>
+      <NuxtLink to="#" class="bi-twitter mx-2"/>
+      <NuxtLink to="#" class="bi-google mx-2"/>
+      <NuxtLink to="#" class="bi-instagram mx-2"/>
+      <NuxtLink to="#" class="bi-linkedin mx-2"/>
+      <NuxtLink to="#" class="bi-github mx-2"/>
     </section>
     <lang-input/>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

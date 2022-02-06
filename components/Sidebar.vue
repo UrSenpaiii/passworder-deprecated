@@ -1,24 +1,18 @@
 <template>
   <aside class="col-2">
-    <h1 class="text-white">My vaults</h1>
+    <h1 class="text-white">{{ $t("myVaults")}}</h1>
 
     <div class="dropdown">
       <button class="btn btn-light dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        Create new
+        {{ $t("create") }}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown">
-        <li class="dropdown-item"><a href="#">Password</a></li>
-        <li class="dropdown-item"><a href="#">Note</a></li>
-        <li class="dropdown-item"><a href="#">Folder</a></li>
-        <li class="dropdown-item"><a href="#">Vault</a></li>
+        <li class="dropdown-item"><a href="#">{{ $t("password") }}</a></li>
+        <li class="dropdown-item"><a href="#">{{ $t("note") }}</a></li>
+        <li class="dropdown-item"><a href="#">{{ $t("folder") }}</a></li>
+        <li class="dropdown-item"><a href="#">{{ $t("vault") }}</a></li>
       </ul>
     </div>
-    <ul>
-      <li><a class="text-white" href="#">passwords</a></li>
-      <li><a class="text-white" href="#">notes</a></li>
-      <li><a class="text-white" href="#">audit</a></li>
-      <li><a class="text-white" href="#">trash bin</a></li>
-    </ul>
   </aside>
 </template>
 

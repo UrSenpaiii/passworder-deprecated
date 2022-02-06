@@ -30,10 +30,6 @@
         <list-layout v-if="layout==='list'"/>
         <grid-layout v-if="layout==='grid'"/>
 
-
-
-
-
       </main>
     </div>
   </div>
@@ -41,15 +37,17 @@
 
 <script>
 export default {
-  head: {
-    title: "Vault",
-    meta: [
-      {hid: 'description', name: 'description', content: 'Vault page'}
-    ]
+  head() {
+    return {
+      title: this.$t("meta.titles.vault"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("meta.descriptions.vault")}
+      ]
+    }
   },
   data: () => ({
     layout: "folder",
-    notes: [
+    notes: [ // FIXME axios replacement
       {
         title: "Goole",
         login: "google@gmail.com",

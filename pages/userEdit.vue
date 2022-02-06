@@ -6,7 +6,7 @@
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <input type="hidden" name="userId" :value="user.id">
 
-          <label for="username" class="form-label">Username:</label>
+          <label for="username" class="form-label">{{ $t("username") }}:</label>
           <input type="text" class="form-control" id="username" name="username" :value="user.username">
         </div>
         <div class="mb-3 form-check">
@@ -16,7 +16,7 @@
                    :checked="user.roles.includes(role)">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">{{ $t("btn.save") }}</button>
       </form>
     </main>
   </div>
@@ -24,7 +24,15 @@
 
 <script>
 export default {
-  data: () => ({
+  head() {
+    return {
+      title: this.$t("meta.titles.userEdit"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("meta.descriptions.userEdit")}
+      ]
+    }
+  },
+  data: () => ({ // FIXME axios replacement
     user: {
       id: 0,
       username: "Admin",

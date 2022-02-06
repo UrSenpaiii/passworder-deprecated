@@ -1,8 +1,8 @@
 export default (context) => {
   return {
-    fallbackLocale: 'en',
+    fallbackLocale: "en",
     pluralizationRules: {
-      'ru': (choice, choicesLength) => {
+      "ru": (choice, choicesLength) => {
         if (choice === 0) return 0
 
         const teen = choice > 10 && choice < 20;

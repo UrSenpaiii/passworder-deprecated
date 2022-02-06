@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <main>
-      <h1>profile</h1>
-      {{this.$auth.user}}
+      <h1>{{ $t("profile") }}</h1>
+      {{ this.$auth.user }}
 
       <form method="post">
-        <input type="submit" value="logout">
+        <input type="submit" :value="$t('logout')">
       </form>
     </main>
   </div>
@@ -13,11 +13,13 @@
 
 <script>
 export default {
-  head: {
-    title: "Profile",
-    meta: [
-      {hid: 'description', name: 'description', content: 'Profile page'}
-    ]
+  head() {
+    return {
+      title: this.$t("meta.titles.profile"),
+      meta: [
+        {hid: "description", name: "description", content: this.$t("meta.descriptions.profile")}
+      ]
+    }
   },
   methods: {
     async logout() {
