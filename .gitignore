@@ -79,6 +79,10 @@ dist
 
 # IDE / Editor
 .idea
+out
+*.iws
+*.iml
+*.ipr
 
 # Service worker
 sw.*
