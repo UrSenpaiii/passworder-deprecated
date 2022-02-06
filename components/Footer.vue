@@ -10,7 +10,7 @@
     </section>
     <lang-input/>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © {{ new Date().getFullYear() }} Copyright: <NuxtLink to="/">{{sitename}}</NuxtLink>
+      © {{ new Date().getFullYear() }} Copyright: <NuxtLink to="/" class="text-capitalize">{{sitename}}</NuxtLink>
     </div>
   </footer>
 </template>
@@ -18,7 +18,7 @@
 <script>
 export default {
   data: () => ({
-    sitename: process.env.name
+    sitename: process.env.domain
   })
 }
 </script>

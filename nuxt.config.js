@@ -75,6 +75,6 @@ export default {
   env: {
     scheme: "https",
     domain: "passworder.com",
-    name: "Passworder.com",
+    name: "Passworder",
   }
 }
