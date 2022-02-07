@@ -2,17 +2,15 @@ export default (context) => {
   return {
     fallbackLocale: "en",
     pluralizationRules: {
-      "ru": (choice, choicesLength) => {
-        if (choice === 0) return 0
-
-        const teen = choice > 10 && choice < 20;
-        const endsWithOne = choice % 10 === 1;
-
-        if (choicesLength < 4) return (!teen && endsWithOne) ? 1 : 2
-        if (!teen && endsWithOne) return 1
-        if (!teen && choice % 10 >= 2 && choice % 10 <= 4) return 2
-
-        return (choicesLength < 4) ? 2 : 3
+      "ru": function (num, choicesLength) {
+        if (choicesLength === 1) return 0;
+        if (choicesLength === 2) return num === 1 ? 0 : 1;
+        num = Math.abs(num);
+        let n10 = num % 10, n100 = num % 100;
+        let result = n10 === 1 ? 0 : n10 > 0 && n10 < 5 ? 1 : 2;
+        if (n100 > 10 && n100 < 20) result = 2;
+        if (num === 0 && choicesLength === 4) return 0;
+        return result + (choicesLength === 3 ? 0 : 1);
       }
     }
   }
