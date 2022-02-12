@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "ListLayout"
+  props: {notes: Array}
 }
 </script>
 
