@@ -1,6 +1,6 @@
 <template>
   <aside class="col-2">
-    <h1 class="text-white">{{ $t("myVaults")}}</h1>
+    <h2 class="text-white">{{ $t("myVaults")}}</h2>
 
     <div class="dropdown">
       <button class="btn btn-light dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -17,10 +17,6 @@
 </template>
 
 <style scoped lang="scss">
-.text-white:hover {
-  color: #C0C4CC !important;
-}
-
 .dropdown-toggle::after {
   content: url("assets/plus-lg.svg");
   vertical-align: -.15em;

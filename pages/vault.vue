@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <Sidebar/>
+      <v-sidebar/>
       <main class="col-10 px-0">
         <div class="d-flex justify-content-between border-bottom p-2">
 
@@ -25,11 +25,10 @@
           </div>
         </div>
 
-        <folder-layout v-if="layout==='folder'" :notes="notes"/>
-        <table-layout v-if="layout==='table'" :notes="notes"/>
-        <list-layout v-if="layout==='list'"/>
-        <grid-layout v-if="layout==='grid'"/>
-
+        <v-folder-layout v-if="layout==='folder'" :notes="notes"/>
+        <v-table-layout v-if="layout==='table'" :notes="notes"/>
+        <v-list-layout v-if="layout==='list'" :notes="notes"/>
+        <v-grid-layout v-if="layout==='grid'" :notes="notes"/>
       </main>
     </div>
   </div>

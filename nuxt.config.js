@@ -18,7 +18,7 @@ export default {
   },
 
   css: ["@/assets/scss/main"],
-  components: true,
+  components: [{path: "~/components", pathPrefix: false, prefix: "v"}],
 
   modules: [
     ["@nuxtjs/axios", {
