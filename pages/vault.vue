@@ -25,10 +25,10 @@
           </div>
         </div>
 
-        <v-folder-layout v-if="layout==='folder'" :notes="notes"/>
-        <v-table-layout v-if="layout==='table'" :notes="notes"/>
-        <v-list-layout v-if="layout==='list'" :notes="notes"/>
-        <v-grid-layout v-if="layout==='grid'" :notes="notes"/>
+        <v-folder-layout v-if="layout==='folder'" :records="records"/>
+        <v-table-layout v-if="layout==='table'" :records="records"/>
+        <v-list-layout v-if="layout==='list'" :records="records"/>
+        <v-grid-layout v-if="layout==='grid'" :records="records"/>
       </main>
     </div>
   </div>
@@ -46,7 +46,7 @@ export default {
   },
   data: () => ({
     layout: "folder",
-    notes: [ // FIXME axios replacement
+    records: [ // FIXME axios replacement
       {
         title: "Goole",
         login: "google@gmail.com",

@@ -8,7 +8,7 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown">
         <li class="dropdown-item"><a href="#">{{ $t("password") }}</a></li>
-        <li class="dropdown-item"><a href="#">{{ $t("note") }}</a></li>
+        <li class="dropdown-item"><a href="#">{{ $t("record") }}</a></li>
         <li class="dropdown-item"><a href="#">{{ $t("folder") }}</a></li>
         <li class="dropdown-item"><a href="#">{{ $t("vault") }}</a></li>
       </ul>

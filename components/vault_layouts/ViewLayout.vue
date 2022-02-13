@@ -4,10 +4,7 @@
 
 <script>
 export default {
+  props: {record: Array},
   data: () => ({})
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -9,11 +9,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(note, i) in notes">
+    <tr v-for="(record, i) in records">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ note.title }}</td>
-      <td>{{ note.login }}</td>
-      <td>{{ note.password }}</td>
+      <td>{{ record.title }}</td>
+      <td>{{ record.login }}</td>
+      <td>{{ record.password }}</td>
     </tr>
     </tbody>
   </table>
@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  props: {notes: Array},
+  props: {records: Array},
 }
 </script>

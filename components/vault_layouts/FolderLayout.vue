@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  props: {notes: Array}
+  props: {records: Array}
 }
 </script>
