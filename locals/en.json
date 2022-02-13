@@ -5,7 +5,11 @@
     "save": "Save",
     "submit": "Submit"
   },
+  "copy": "Copy",
   "create": "Create",
+  "delete": "Delete",
+  "duplicate": "Duplicate",
+  "edit": "Edit",
   "email": "Email",
   "error": "Error",
   "errors": {
@@ -29,6 +33,7 @@
   "folder": "Folder",
   "forgotPassword": "Forgot a password",
   "haveAcc": "Already have an account",
+  "history": "History",
   "homePage": "Home page",
   "index": "Main",
   "langName": "English",
@@ -54,14 +59,16 @@
       "vault": "Vault"
     }
   },
-  "myVaults": "My vaults",
-  "note": "Note",
+  "myVault": "My vault",
   "password": "Password",
   "profile": "Profile",
+  "record": "Record",
   "registration": "Registration",
   "roles": "Roles",
+  "securityAudit": "Security audit",
   "signUp": "Sign up",
   "title": "Title",
+  "trashBin": "Trash Bin",
   "username": "Username",
   "vault": "Vault"
 }
