@@ -1,8 +1,10 @@
 <template>
   <aside class="col-2">
-    <h2 class="text-white">{{ $t("myVaults")}}</h2>
+    <div class="align-items-baseline d-flex my-3">
+      <h2 class="text-white">{{ $t("myVault")}}</h2> <i class="bi bi-list mx-3 text-white"/>
+    </div>
 
-    <div class="dropdown">
+    <div class="dropdown my-3">
       <button class="btn btn-light dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
         {{ $t("create") }}
       </button>
@@ -13,6 +15,15 @@
         <li class="dropdown-item"><a href="#">{{ $t("vault") }}</a></li>
       </ul>
     </div>
+
+    <div class="align-items-baseline d-flex my-2">
+      <i class="bi bi-shield-lock-fill mx-2 text-white"></i> <h4 class="text-white">{{ $t("securityAudit")}}</h4>
+    </div>
+    <div class="align-items-baseline d-flex my-2">
+      <i class="bi bi-trash3-fill mx-2 text-white"></i> <h4 class="text-white">{{ $t("trashBin")}}</h4>
+    </div>
+
+
   </aside>
 </template>
 
@@ -21,5 +32,9 @@
   content: url("assets/plus-lg.svg");
   vertical-align: -.15em;
   border: none;
+}
+
+i {
+  font-size: 25px;
 }
 </style>
