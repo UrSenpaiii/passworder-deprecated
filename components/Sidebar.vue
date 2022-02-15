@@ -29,7 +29,7 @@
 
 <style scoped lang="scss">
 .dropdown-toggle::after {
-  content: url("assets/plus-lg.svg");
+  content: url("assets/img/plus-lg.svg");
   vertical-align: -.15em;
   border: none;
 }
