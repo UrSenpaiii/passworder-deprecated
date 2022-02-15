@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "@/assets/rules";
+import {classUpdate, isEmptyValidation, passwordValidation, usernameValidation} from "~/modules/rules";
 
 export default {
   head() {

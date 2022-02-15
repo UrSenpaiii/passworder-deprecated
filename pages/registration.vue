@@ -51,7 +51,7 @@ import {
   passwordValidation,
   passwordsValidation,
   isEmptyValidation
-} from "@/assets/rules"
+} from "~/modules/rules"
 
 export default {
   auth: false,
