@@ -19,6 +19,7 @@ export default {
 
   css: ["@/assets/scss/main"],
   components: [{path: "~/components", pathPrefix: false, prefix: "v"}],
+  router: { middleware: "auth" },
 
   modules: [
     ["@nuxtjs/axios", {

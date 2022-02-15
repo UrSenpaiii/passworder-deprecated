@@ -54,6 +54,7 @@ import {
 } from "@/assets/rules"
 
 export default {
+  auth: false,
   head() {
     return {
       title: this.$t("meta.titles.registration"),
