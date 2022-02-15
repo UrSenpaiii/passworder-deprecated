@@ -57,6 +57,11 @@ export default {
         password: "87654321"
       }
     ]
-  })
+  }),
+  async asyncData({$auth, $axios}) {
+    let userId = $auth.user.id
+    let {data} = await $axios.get(`/vault/${userId}`)
+    return data
+  }
 }
 </script>
