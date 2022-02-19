@@ -1,29 +1,32 @@
 const crypto = require("crypto")
-const fs = require("fs")
-const util= require("util")
+const util = require("util")
 
-const cipherData = fs.readFileSync(`${__dirname}/key.json`)
-const {key, algorithm} = JSON.parse(cipherData)
+const ENCODING_FORMAT = "hex"
+const DECODING_FORMAT = "utf8"
+const ALGORITHM = "aes256"
 
-const encodingFormat = "hex"
-const decodingFormat = "utf8"
+let scryptKey = async () => {
+  return util.promisify(crypto.scrypt)("a!", "salt", 16)
+}
 
-let encrypt = (str) => {
-  let iv = crypto.randomBytes(8).toString(encodingFormat)
-  const cipher = crypto.createCipheriv(algorithm, key, iv)
+console.log(scryptKey())
 
-  let encrypted = cipher.update(str, decodingFormat, encodingFormat)
-  encrypted += cipher.final(encodingFormat)
+export let encrypt = (str, key) => {
+  let iv = crypto.randomBytes(8).toString(ENCODING_FORMAT)
+  const cipher = crypto.createCipheriv(ALGORITHM, key, iv)
+
+  let encrypted = cipher.update(str, DECODING_FORMAT, ENCODING_FORMAT)
+  encrypted += cipher.final(ENCODING_FORMAT)
 
   return `${encrypted}:${iv}`
 }
 
-let decrypt = (str) => {
+export let decrypt = (str, key) => {
   const [encryptedStr, iv] = str.split(":")
-  const decipher = crypto.createDecipheriv(algorithm, key, iv)
+  const decipher = crypto.createDecipheriv(ALGORITHM, key, iv)
 
-  let decrypted = decipher.update(encryptedStr, encryptedStr, decodingFormat)
-  decrypted += decipher.final(decodingFormat)
+  let decrypted = decipher.update(encryptedStr, ENCODING_FORMAT, DECODING_FORMAT)
+  decrypted += decipher.final(DECODING_FORMAT)
 
   return decrypted
 }
