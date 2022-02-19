@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {encrypt, decrypt} from "~/modules/encryption";
+import {encrypt, decrypt} from "~/modules/encryption"
 
 export default {
   auth: false,
@@ -23,20 +23,23 @@ export default {
       ]
     }
   },
-  data: () => ({originalStr: "im origin str!"}),
+  data: () => ({
+    originalStr: "im origin str!",
+    masterPass: "it is very difficult master password!"
+  }),
   computed: {
     encryptedStr() {
       try {
-        return encrypt(this.originalStr, "test")
+        return encrypt(this.originalStr, this.masterPass)
       } catch (e) {
-        return "error";
+        return e
       }
     },
     decryptedStr() {
       try {
-        return decrypt(this.encryptedStr, "test")
+        return decrypt(this.encryptedStr, this.masterPass)
       } catch (e) {
-        return "error";
+        return e
       }
     }
   }
