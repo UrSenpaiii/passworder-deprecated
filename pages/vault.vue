@@ -29,6 +29,7 @@
         <v-table-layout v-if="layout==='table'" :records="records"/>
         <v-list-layout v-if="layout==='list'" :records="records"/>
         <v-grid-layout v-if="layout==='grid'" :records="records"/>
+        data: {{ data }}
       </main>
     </div>
   </div>
@@ -56,12 +57,13 @@ export default {
         login: "facebook@fb.com",
         password: "87654321"
       }
-    ]
+    ],
+    data: ""
   }),
   async asyncData({$auth, $axios}) {
     let userId = $auth.user.id
     let {data} = await $axios.get(`/vault/${userId}`)
-    return data
+    return {data}
   }
 }
 </script>

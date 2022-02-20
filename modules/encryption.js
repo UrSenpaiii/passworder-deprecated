@@ -7,9 +7,9 @@ const DECODING_FORMAT = "utf8"
 const ALGORITHM = "aes256"
 
 let keyToHex = (str) => {
-  // N - The CPU/memory cost; increasing this increases the overall difficulty
-  // r - The block size; increasing this increases the dependency on memory latency and bandwidth
-  // p - The parallelization cost; increasing this increases the dependency on multiprocessing
+  // N - The CPU/memory cost; increases the overall difficulty
+  // r - The block size; increases the dependency on memory latency and bandwidth
+  // p - The parallelization cost; increases the dependency on multiprocessing
   const salt = "f8VQcI86MUgLzQCYsKRV"
   const N = 1024, r = 8, p = 1
   const dkLen = 16
