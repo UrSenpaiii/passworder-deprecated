@@ -17,6 +17,6 @@ export default {
         {hid: "description", name: "description", content: this.$t("meta.descriptions.index")}
       ]
     }
-  },
+  }
 }
 </script>

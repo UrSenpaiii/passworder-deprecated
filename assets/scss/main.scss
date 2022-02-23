@@ -17,6 +17,10 @@ body {
   display: none
 }
 
+main {
+  background-color: #FFF;
+}
+
 // Scrollbar
 ::-webkit-scrollbar {
   width: 10px;
@@ -48,7 +52,7 @@ a {
   text-decoration: none;
   transition: all 0.15s ease;
   &:hover {
-    color: $neutral-custom ;
+    color: $neutral-custom;
   }
 }
 
@@ -74,5 +78,5 @@ button, .btn, .page-item {
 }
 
 .form-control[name=password] {
-  background-image: none!important;
+  background-image: none !important;
 }
