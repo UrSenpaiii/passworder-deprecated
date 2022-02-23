@@ -1,4 +1,4 @@
-{
+export default {
   "active": "Active",
   "adminPanel": "Admin Panel",
   "btn": {

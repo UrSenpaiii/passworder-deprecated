@@ -40,6 +40,7 @@
   "logIn": "Вход",
   "login": "Логин",
   "logout": "Выйти",
+  "masterPassword": "Мастер Пароль",
   "meta": {
     "descriptions": {
       "adminPanel": "а вам не нужно знать что тут",
@@ -54,6 +55,7 @@
       "adminPanel": "Панель администратора",
       "login": "Логин",
       "profile": "Профиль",
+      "records": "Записи",
       "registration": "Регистрация",
       "userEdit": "Изменение пользователя",
       "vault": "Хранилище"
