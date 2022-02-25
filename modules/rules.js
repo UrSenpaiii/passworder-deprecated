@@ -8,8 +8,7 @@ export let isEmptyValidation = (fieldValue, errorIndex) => !fieldValue ? 0 : err
 
 export let classUpdate = (field, errorIndex) => {
   field.classList.remove("is-invalid", "is-valid")
-  if (field.value) field.classList.add(errorIndex >= 0 ? "is-invalid" : "is-valid")
-  if (errorIndex !== -1) field.classList.add(errorIndex >= 0 ? "is-invalid" : "is-valid")
+  if (field.value || errorIndex !== -1) field.classList.add(errorIndex >= 0 ? "is-invalid" : "is-valid")
 }
 
 export let usernameValidation = (username) => {
