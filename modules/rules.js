@@ -32,6 +32,7 @@ export let passwordValidation = (password1) => {
 }
 
 export let passwordsValidation = (password1, password2) => {
-  if (!password2) return -1
-  if (password1 !== password2) return 1
+  const isEquals = password1 === password2
+  if (isEquals || !password2) return -1
+  if (!isEquals) return 1
 }

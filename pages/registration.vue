@@ -2,35 +2,39 @@
   <div class="container">
     <main class="p-4">
       <h1>{{ $t("registration") }}</h1>
-      <form class="needs-validation" novalidate method="post">
+      <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
         <div class="mb-3">
-          <label for="username" class="form-label">{{ $t("username") }}</label>
-          <input type="text" class="form-control" id="username" name="username" minlength="3" maxlength="30" required>
+          <label class="form-label" for="username">{{ $t("username") }}</label>
+          <input id="username" class="form-control" maxlength="30" minlength="3" name="username" required type="text"
+                 @input="validateUsernameField">
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">{{ $t("email") }}</label>
-          <input type="email" class="form-control" id="email" name="email" minlength="6" maxlength="50" required
-                 pattern="(?:[a-z0-9!#$%&*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])">
+          <label class="form-label" for="email">{{ $t("email") }}</label>
+          <input id="email" class="form-control" maxlength="50" minlength="6" name="email" required type="email"
+                 pattern="(?:[a-z0-9!#$%&*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*|'(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*')@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
+                 @input="validateEmailField">
           <div class="invalid-feedback">
             {{ errors.email[errorIndexes[1]] }}
           </div>
         </div>
         <div class="mb-3">
-          <label for="password1" class="form-label">{{ $t("password") }}</label>
-          <input :type="showPassword ? 'text':'password'" class="form-control d-inline-block" id="password1"
-                 name="password" pattern="[@$!%*?&a-zA-Z0-9]+" minlength="8" maxlength="30" required>
-          <i @click="showPassword = !showPassword" style="margin: 6px 0 6px -30px;"
-             :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"></i>
+          <label class="form-label" for="password1">{{ $t("password") }}</label>
+          <input id="password1" :type="showPassword ? 'text':'password'" class="form-control d-inline-block"
+                 maxlength="30" minlength="8" name="password" pattern="[@$!%*?&a-zA-Z0-9]+" required
+                 @input="validatePasswordField">
+          <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
+             style="margin: 6px 0 6px -30px;"
+             @click="showPassword = !showPassword"></i>
           <div class="invalid-feedback">
             {{ errors.password[errorIndexes[2]] }}
           </div>
         </div>
         <div class="mb-3">
-          <input :type="showPassword ? 'text':'password'" class="form-control" id="password2" name="password2"
-                 minlength="8" maxlength="30" required>
+          <input id="password2" :type="showPassword ? 'text':'password'" class="form-control" maxlength="30"
+                 minlength="8" name="password2" required @input="validatePasswordsField">
           <div class="invalid-feedback">
             {{ errors.password2[errorIndexes[3]] }}
           </div>
@@ -75,44 +79,47 @@ export default {
       showPassword: false
     }
   },
-  mounted() {
-    let form = document.getElementsByClassName("needs-validation")[0]
-
-    form.username.addEventListener("input", () => {
-      this.errorIndexes[0] = usernameValidation(form.username.value)
-      classUpdate(form.username, this.errorIndexes[0])
-    }, false)
-
-    form.email.addEventListener("input", () => {
-      this.errorIndexes[1] = emailValidation(form.email.value)
-      classUpdate(form.email, this.errorIndexes[1])
-    }, false)
-
-    form.password.addEventListener("input", () => {
-      this.errorIndexes[2] = passwordValidation(form.password.value)
-
-      if (form.password2.value) {
-        this.errorIndexes[3] = passwordsValidation(form.password.value, form.password2.value)
-        classUpdate(form.password2, this.errorIndexes[3])
+  methods: {
+    validateUsernameField(event) {
+      const field = event.target
+      this.$set(this.errorIndexes, 0, usernameValidation(field.value))
+      classUpdate(field, this.errorIndexes[0])
+    },
+    validateEmailField(event) {
+      const field = event.target
+      this.$set(this.errorIndexes, 1, emailValidation(field.value))
+      classUpdate(field, this.errorIndexes[1])
+    },
+    validatePasswordField(event) {
+      const field = event.target
+      const dependentField = document.getElementById("password2")
+      this.$set(this.errorIndexes, 2, passwordValidation(field.value))
+      if (dependentField.vault) {
+        this.$set(this.errorIndexes, 3, passwordsValidation(field.value, dependentField))
+        classUpdate(field, this.errorIndexes[3])
       }
-
-      classUpdate(form.password, this.errorIndexes[2])
-    }, false)
-
-    form.password2.addEventListener("input", () => {
-      this.errorIndexes[3] = passwordsValidation(form.password.value, form.password2.value)
-      classUpdate(form.password2, this.errorIndexes[3])
-    }, false)
-
-    form.addEventListener("submit", (event) => {
+      classUpdate(field, this.errorIndexes[2])
+    },
+    validatePasswordsField(event) {
+      const field = event.target
+      const dependentField = document.getElementById("password1")
+      this.$set(this.errorIndexes, 3, passwordsValidation(dependentField, field.value))
+      classUpdate(field, this.errorIndexes[3])
+    },
+    submitValidation(event) {
+      const form = event.target
       for (let i = 0; i < form.length - 1; i++) {
-        this.errorIndexes[i] = isEmptyValidation(form[i].value, this.errorIndexes[i])
+        this.$set(this.errorIndexes, i, isEmptyValidation(form[i].value, this.errorIndexes[i]))
         classUpdate(form[i], this.errorIndexes[i])
       }
-
-      if (!form.checkValidity()) event.preventDefault() && event.stopPropagation()
-      else this.store.registration(form.username, form.email) // FIXME axios
-    }, false)
+      if (form.checkValidity()) this.registerUser()
+    },
+    async registerUser(user) {
+      console.log("user reg")
+      await this.$axios.post("/register", {data: user})
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+    }
   }
 }
 </script>
