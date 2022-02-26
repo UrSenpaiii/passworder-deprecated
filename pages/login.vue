@@ -8,7 +8,7 @@
           <input id="username" class="form-control" maxlength="30" minlength="3" name="username" required type="text"
                  @input="inputClear">
           <div class="invalid-feedback">
-            {{ errors.empty[errorIndexes[0]] }}
+            {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
@@ -18,7 +18,7 @@
           <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
              @click="showPassword = !showPassword"/>
           <div class="invalid-feedback">
-            {{ errors.empty[errorIndexes[1]] }}
+            {{ errors.password[errorIndexes[1]] }}
           </div>
         </div>
         <button class="btn btn-primary" type="submit">{{ $t("logIn") }}</button>
@@ -44,7 +44,8 @@ export default {
   data() {
     return {
       errors: {
-        empty: [this.$t("errors.fillField")]
+        username: [this.$t("errors.fillField"), ...this.$t("errors.username")],
+        password: [this.$t("errors.fillField"), this.$t("errors.password")[0]],
       },
       errorIndexes: [-1, -1],
       showPassword: false
@@ -53,7 +54,8 @@ export default {
   methods: {
     inputClear(event) {
       const field = event.target
-      field.id === "username" ? this.$set(this.errorIndexes, 0, -1) : this.$set(this.errorIndexes, 1, -1)
+      let index = field.id === "username" ? 0 : 1
+      this.$set(this.errorIndexes, index, -1)
       field.classList.remove("is-invalid", "is-valid")
     },
     submitValidation(event) {
