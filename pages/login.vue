@@ -53,8 +53,8 @@ export default {
   methods: {
     inputClear(event) {
       const field = event.target
-      this.$set(this.errorIndexes, 3, isEmptyValidation(field.value))
-      classUpdate(field, this.errorIndexes[0])
+      field.id === "username" ? this.$set(this.errorIndexes, 0, -1) : this.$set(this.errorIndexes, 1, -1)
+      field.classList.remove("is-invalid", "is-valid")
     },
     submitValidation(event) {
       const form = event.target
