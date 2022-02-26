@@ -27,9 +27,7 @@ export default {
   head() {
     return {
       title: this.$t("meta.titles.userEdit"),
-      meta: [
-        {hid: "description", name: "description", content: this.$t("meta.descriptions.userEdit")}
-      ]
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.userEdit")}]
     }
   },
   data: () => ({ // FIXME axios replacement

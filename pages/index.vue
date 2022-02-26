@@ -13,9 +13,7 @@ export default {
   auth: false,
   head() {
     return {
-      meta: [
-        {hid: "description", name: "description", content: this.$t("meta.descriptions.index")}
-      ]
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.index")}]
     }
   }
 }

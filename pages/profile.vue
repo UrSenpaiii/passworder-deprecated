@@ -16,9 +16,7 @@ export default {
   head() {
     return {
       title: this.$t("meta.titles.profile"),
-      meta: [
-        {hid: "description", name: "description", content: this.$t("meta.descriptions.profile")}
-      ]
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.profile")}]
     }
   },
   methods: {

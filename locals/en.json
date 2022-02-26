@@ -13,22 +13,24 @@
   "email": "Email",
   "error": "Error",
   "errors": {
-    "email": {
-      "length": "Email has to be at least 3 chars length",
-      "regex": "Invalid email"
-    },
+    "email": [
+      "Email has to be at least 5 chars length",
+      "Invalid email"
+    ],
     "fillField": "Fill this field",
-    "password": {
-      "digits": "Password must contain at least 1 digit",
-      "length": "Password length must be at least 8 characters ",
-      "lowercase": "Password must contain at least 1 lowercase character",
-      "notEquals": "Passwords not equals",
-      "specChars": "Password must contain at least 1 special character",
-      "uppercase": "Password must contain at least 1 uppercase character"
-    },
-    "username": {
-      "length": "Username length must be at least 3 characters"
-    }
+    "password": [
+      "Password length must be at least 8 characters",
+      "Password must contain at least 1 lowercase character",
+      "Password must contain at least 1 uppercase character",
+      "Password must contain at least 1 digit",
+      "Password must contain at least 1 special character"
+    ],
+    "passwords": [
+      "Passwords not equals"
+    ],
+    "username": [
+      "Username length must be at least 3 characters"
+    ]
   },
   "folder": "Folder",
   "forgotPassword": "Forgot a password",

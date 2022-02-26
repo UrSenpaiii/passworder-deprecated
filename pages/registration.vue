@@ -62,18 +62,16 @@ export default {
   head() {
     return {
       title: this.$t("meta.titles.registration"),
-      meta: [
-        {hid: "description", name: "description", content: this.$t("meta.descriptions.registration")}
-      ]
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.registration")}]
     }
   },
   data() {
     return {
       errors: {
-        username: [this.$t("errors.fillField"), this.$t("errors.username.length")],
-        email: [this.$t("errors.fillField"), this.$t("errors.email.length"), this.$t("errors.email.regex")],
-        password: [this.$t("errors.fillField"), this.$t("errors.password.length"), this.$t("errors.password.lowercase"), this.$t("errors.password.uppercase"), this.$t("errors.password.digits"), this.$t("errors.password.specChars")],
-        password2: [this.$t("errors.fillField"), this.$t("errors.password.notEquals")]
+        username: [this.$t("errors.fillField"), ...this.$t("errors.username")],
+        email: [this.$t("errors.fillField"), ...this.$t("errors.email")],
+        password: [this.$t("errors.fillField"), ...this.$t("errors.password")],
+        password2: [this.$t("errors.fillField"), ...this.$t("errors.passwords")]
       },
       errorIndexes: [-1, -1, -1, -1],
       showPassword: false

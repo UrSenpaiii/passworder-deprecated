@@ -41,9 +41,7 @@ export default {
   head() {
     return {
       title: this.$t("meta.titles.adminPanel"),
-      meta: [
-        {hid: "description", name: "description", content: this.$t("meta.descriptions.adminPanel")}
-      ]
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.adminPanel")}]
     }
   },
   data: () => ({
