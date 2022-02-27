@@ -5,25 +5,26 @@
       <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
         <div class="mb-3">
           <label class="form-label" for="username">{{ $t("username") }}</label>
-          <input id="username" class="form-control" maxlength="30" minlength="3" name="username" required type="text"
-                 @input="validateUsernameField">
+          <input id="username" v-model="user.username" class="form-control" maxlength="30" minlength="3" name="username"
+                 required type="text" @input="validateUsernameField">
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="email">{{ $t("email") }}</label>
-          <input id="email" class="form-control" maxlength="50" minlength="6" name="email" required type="email"
-                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" @input="validateEmailField">
+          <input id="email" v-model="user.email" class="form-control" maxlength="50" minlength="6" name="email"
+                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required type="email"
+                 @input="validateEmailField">
           <div class="invalid-feedback">
             {{ errors.email[errorIndexes[1]] }}
           </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="password1">{{ $t("password") }}</label>
-          <input id="password1" :type="showPassword ? 'text':'password'" class="form-control d-inline-block"
-                 maxlength="30" minlength="8" name="password" pattern="[@$!%*?&a-zA-Z0-9]+" required
-                 @input="validatePasswordField">
+          <input id="password1" v-model="user.password" :type="showPassword ? 'text':'password'"
+                 class="form-control d-inline-block" maxlength="30" minlength="8" name="password"
+                 pattern="[@$!%*?&a-zA-Z0-9]+" required @input="validatePasswordField">
           <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
              style="margin: 6px 0 6px -30px;"
              @click="showPassword = !showPassword"></i>
@@ -39,6 +40,7 @@
           </div>
         </div>
         <button class="btn btn-primary" type="submit">{{ $t("btn.submit") }}</button>
+        <button class="btn btn-primary" type="button" @click="fillForm">fill</button>
       </form>
       <br>
       <nuxt-link :to="localePath('/login')">{{ $t("haveAcc") }}</nuxt-link>
@@ -66,6 +68,7 @@ export default {
   },
   data() {
     return {
+      user: {username: "", email: "", password: ""},
       errors: {
         username: [this.$t("errors.fillField"), ...this.$t("errors.username")],
         email: [this.$t("errors.fillField"), ...this.$t("errors.email")],
@@ -77,6 +80,13 @@ export default {
     }
   },
   methods: {
+    fillForm() {
+      let form = document.getElementsByClassName("needs-validation")[0]
+      form[0].value = "name"
+      form[1].value = "m@m.cm"
+      form[2].value = "aA1!aaaa"
+      form[3].value = "aA1!aaaa"
+    },
     validateUsernameField(event) {
       const field = event.target
       this.$set(this.errorIndexes, 0, usernameValidation(field.value))
@@ -111,9 +121,8 @@ export default {
       }
       if (form.checkValidity()) this.registerUser()
     },
-    async registerUser(user) {
-      console.log("user reg")
-      await this.$axios.post("/register", {data: user})
+    async registerUser() {
+      await this.$axios.post("/register", {data: this.user})
         .then(res => console.log(res))
         .catch(e => console.log(e))
     }
