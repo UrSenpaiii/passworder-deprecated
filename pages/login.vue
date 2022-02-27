@@ -61,11 +61,9 @@ export default {
     submitValidation(event) {
       const form = event.target
       for (let i = 0; i < form.length - 1; i++) {
-        let len = i ? 3 : 8
-        if (form[i].value < len) console.log(true)
-
+        if (form[i].value.length < (i ? 8 : 3)) this.$set(this.errorIndexes, i, 1)
         this.$set(this.errorIndexes, i, isEmptyValidation(form[i].value, this.errorIndexes[i]))
-        classUpdate(form[i], this.errorIndexes[0])
+        classUpdate(form[i], this.errorIndexes[i])
       }
       if (form.checkValidity()) this.loginUser()
     },
