@@ -5,18 +5,18 @@
       <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
         <div class="mb-3">
           <label class="form-label" for="username">{{ $t("username") }}</label>
-          <input id="username" class="form-control" maxlength="30" minlength="3" name="username" required type="text"
-                 @input="inputClear">
+          <input id="username" v-model="form.login" class="form-control" maxlength="30" minlength="3" name="username"
+                 required type="text" @input="inputClear">
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="password">{{ $t("password") }}</label>
-          <input id="password" :type="showPassword ? 'text':'password'" class="form-control d-inline-block"
+          <input id="password" v-model="form.password" :type="showPassword ? 'text':'password'" class="form-control d-inline-block"
                  maxlength="30" minlength="8" name="password" required @input="inputClear">
           <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
-             @click="showPassword = !showPassword"/>
+             style="margin: 6px 0 6px -30px;" @click="showPassword = !showPassword"/>
           <div class="invalid-feedback">
             {{ errors.password[errorIndexes[1]] }}
           </div>
@@ -43,6 +43,7 @@ export default {
   },
   data() {
     return {
+      form: {login: "", password: ""},
       errors: {
         username: [this.$t("errors.fillField"), ...this.$t("errors.username")],
         password: [this.$t("errors.fillField"), this.$t("errors.password")[0]],
@@ -67,8 +68,8 @@ export default {
       }
       if (form.checkValidity()) this.loginUser()
     },
-    async loginUser(user) {
-      await this.$auth.loginWith("local", {data: user})
+    async loginUser() {
+      await this.$auth.loginWith("local", {data: this.form})
         .then(res => console.log(res))
         .catch(e => console.log(e))
     }
