@@ -34,7 +34,7 @@
         </div>
         <div class="mb-3">
           <input id="password2" :type="showPassword ? 'text':'password'" class="form-control" maxlength="30"
-                 minlength="8" name="password2" required @input="validatePasswordsField">
+                 minlength="8" name="password2" pattern="[@$!%*?&a-zA-Z0-9]+" required @input="validatePasswordsField">
           <div class="invalid-feedback">
             {{ errors.password2[errorIndexes[3]] }}
           </div>
@@ -101,16 +101,16 @@ export default {
       const field = event.target
       const dependentField = document.getElementById("password2")
       this.$set(this.errorIndexes, 2, passwordValidation(field.value))
-      if (dependentField.vault) {
-        this.$set(this.errorIndexes, 3, passwordsValidation(field.value, dependentField))
-        classUpdate(field, this.errorIndexes[3])
+      if (dependentField.value) {
+        this.$set(this.errorIndexes, 3, passwordsValidation(field.value, dependentField.value))
+        classUpdate(dependentField, this.errorIndexes[3])
       }
       classUpdate(field, this.errorIndexes[2])
     },
     validatePasswordsField(event) {
       const field = event.target
       const dependentField = document.getElementById("password1")
-      this.$set(this.errorIndexes, 3, passwordsValidation(dependentField, field.value))
+      this.$set(this.errorIndexes, 3, passwordsValidation(dependentField.value, field.value))
       classUpdate(field, this.errorIndexes[3])
     },
     submitValidation(event) {
@@ -122,7 +122,8 @@ export default {
       if (form.checkValidity()) this.registerUser()
     },
     async registerUser() {
-      await this.$axios.post("/register", {data: this.user})
+      console.log(this.user)
+      await this.$axios.post("/registration", this.user)
         .then(res => console.log(res))
         .catch(e => console.log(e))
     }
