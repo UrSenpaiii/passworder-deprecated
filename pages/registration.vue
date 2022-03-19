@@ -10,6 +10,9 @@
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
+          <div class="invalid-tooltip position-relative d-inline-block"  v-if="serverErrorIndexes[0] !== -1">
+            {{ errors.server[serverErrorIndexes[0]] }}
+          </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="email">{{ $t("email") }}</label>
@@ -19,12 +22,15 @@
           <div class="invalid-feedback">
             {{ errors.email[errorIndexes[1]] }}
           </div>
+          <div class="invalid-tooltip position-relative d-inline-block" v-if="serverErrorIndexes[1] !== -1">
+            {{ errors.server[serverErrorIndexes[1]] }}
+          </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="password1">{{ $t("password") }}</label>
           <input id="password1" v-model="user.password" :type="showPassword ? 'text':'password'"
                  class="form-control d-inline-block" maxlength="30" minlength="8" name="password"
-                 pattern="[@$!%*?&a-zA-Z0-9]+" required @input="validatePasswordField">
+                 pattern="[@$!%*?&,.a-zA-Z0-9]+" required @input="validatePasswordField">
           <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
              style="margin: 6px 0 6px -30px;"
              @click="showPassword = !showPassword"></i>
@@ -34,7 +40,7 @@
         </div>
         <div class="mb-3">
           <input id="password2" :type="showPassword ? 'text':'password'" class="form-control" maxlength="30"
-                 minlength="8" name="password2" pattern="[@$!%*?&a-zA-Z0-9]+" required @input="validatePasswordsField">
+                 minlength="8" name="password2" pattern="[@$!%*?&,.a-zA-Z0-9]+" required @input="validatePasswordsField">
           <div class="invalid-feedback">
             {{ errors.password2[errorIndexes[3]] }}
           </div>
@@ -57,6 +63,7 @@ import {
   passwordsValidation,
   isEmptyValidation
 } from "~/modules/rules"
+import { mapMutations } from "vuex"
 
 export default {
   auth: false,
@@ -73,13 +80,18 @@ export default {
         username: [this.$t("errors.fillField"), ...this.$t("errors.username")],
         email: [this.$t("errors.fillField"), ...this.$t("errors.email")],
         password: [this.$t("errors.fillField"), ...this.$t("errors.password")],
-        password2: [this.$t("errors.fillField"), ...this.$t("errors.passwords")]
+        password2: [this.$t("errors.fillField"), ...this.$t("errors.passwords")],
+        server: this.$t("errors.server"),
       },
       errorIndexes: [-1, -1, -1, -1],
+      serverErrorIndexes: [-1, -1],
       showPassword: false
     }
   },
   methods: {
+    ...mapMutations({
+      setActivationEmail: "activation/setActivationEmail"
+    }),
     fillForm() {
       let form = document.getElementsByClassName("needs-validation")[0]
       form[0].value = "name"
@@ -124,8 +136,16 @@ export default {
     async registerUser() {
       console.log(this.user)
       await this.$axios.post("/registration", this.user)
-        .then(res => console.log(res))
+        .then(res => {
+          this.setActivationEmail(this.user.email)
+          if (!res.data[0]) return this.$router.push("/")
+          this.serverErrorsHandler(res.data - 1)
+        })
         .catch(e => console.log(e))
+    },
+    serverErrorsHandler(errorCode) {
+      this.serverErrorIndexes = [-1, -1]
+      this.$set(this.serverErrorIndexes, errorCode, errorCode)
     }
   }
 }

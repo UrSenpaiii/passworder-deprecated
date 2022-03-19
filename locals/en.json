@@ -28,8 +28,13 @@
     "passwords": [
       "Passwords not equals"
     ],
+    "server": [
+      "This username already taken",
+      "Account with this email adress already exist"
+    ],
     "username": [
-      "Username length must be at least 3 characters"
+      "Username length must be at least 3 characters",
+      "Invalid username"
     ]
   },
   "folder": "Folder",
@@ -45,6 +50,7 @@
   "masterPassword": "Master Password",
   "meta": {
     "descriptions": {
+      "activation": "Страница с уведомлением об открывке кода активации на почту",
       "adminPanel": "You do not need to know what is here",
       "index": "Index page",
       "login": "Login page",
@@ -54,6 +60,7 @@
       "vault": "Vault page"
     },
     "titles": {
+      "activation": "Activation",
       "adminPanel": "Admin panel",
       "login": "Login",
       "profile": "Profile",
