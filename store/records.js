@@ -1,5 +1,4 @@
-import {encrypt, decrypt} from "../modules/encryption"
-import test from "./test"
+import {encrypt, decrypt} from "@/modules/encryption"
 
 export const state = () => ({
   records: [],
