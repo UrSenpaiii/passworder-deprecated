@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <h1>Registration successfully completed!</h1>
-    <p>Please check your email {{ activationEmail }} to activate account and start using it.</p>
+    <div class="p-4">
+      <h1>Registration successfully completed!</h1>
+      <p>Please check your email <a class="fst-italic" :href='`mailto:${activationEmail}?Subject=upport`'>{{ activationEmail }}</a>
+        to activate account and start using it.</p>
+    </div>
   </div>
 </template>
 
@@ -18,8 +21,11 @@ export default {
   },
   data() {
     return {
-      activationEmail: this.getRouteBaseName()
+      activationEmail: this.getActivationEmail()
     }
+  },
+  created() {
+    if (this.activationEmail == null) this.$router.push("/")
   },
   methods: {
     ...mapGetters({

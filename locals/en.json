@@ -1,4 +1,8 @@
 {
+  "activation": {
+    "failed": "This activation code does not exist",
+    "success": "You successfully activated your account"
+  },
   "active": "Active",
   "adminPanel": "Admin Panel",
   "btn": {
