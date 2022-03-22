@@ -56,6 +56,7 @@
     "descriptions": {
       "activation": "Страница с уведомлением об открывке кода активации на почту",
       "adminPanel": "You do not need to know what is here",
+      "code": "Page for check activation code",
       "index": "Index page",
       "login": "Login page",
       "profile": "Profile page",
@@ -64,8 +65,9 @@
       "vault": "Vault page"
     },
     "titles": {
-      "activation": "Activation",
+      "activation": "Success registration",
       "adminPanel": "Admin panel",
+      "code": "Activation",
       "login": "Login",
       "profile": "Profile",
       "records": "Records",

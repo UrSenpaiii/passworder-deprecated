@@ -8,11 +8,11 @@
 
 <script>
 export default {
-  auth: false,
+  auth: 'guest',
   head() {
     return {
-      title: this.$t("meta.titles.registration"),
-      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.registration")}]
+      title: this.$t("meta.titles.code"),
+      meta: [{hid: "description", name: "description", content: this.$t("meta.descriptions.code")}]
     }
   },
   data: () => ({
