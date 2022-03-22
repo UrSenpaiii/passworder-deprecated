@@ -10,7 +10,7 @@
           <div class="invalid-feedback">
             {{ errors.username[errorIndexes[0]] }}
           </div>
-          <div class="invalid-tooltip position-relative d-inline-block"  v-if="serverErrorIndexes[0] !== -1">
+          <div v-if="serverErrorIndexes[0] !== -1"  class="invalid-tooltip position-relative d-inline-block">
             {{ errors.server[serverErrorIndexes[0]] }}
           </div>
         </div>
@@ -22,17 +22,16 @@
           <div class="invalid-feedback">
             {{ errors.email[errorIndexes[1]] }}
           </div>
-          <div class="invalid-tooltip position-relative d-inline-block" v-if="serverErrorIndexes[1] !== -1">
+          <div v-if="serverErrorIndexes[1] !== -1" class="invalid-tooltip position-relative d-inline-block">
             {{ errors.server[serverErrorIndexes[1]] }}
           </div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="password1">{{ $t("password") }}</label>
           <input id="password1" v-model="user.password" :type="showPassword ? 'text':'password'"
-                 class="form-control d-inline-block" maxlength="30" minlength="8" name="password"
-                 pattern="[@$!%*?&,.a-zA-Z0-9]+" required @input="validatePasswordField">
-          <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
-             style="margin: 6px 0 6px -30px;"
+                 class="form-control d-inline-block" maxlength="30" minlength="8" name="password" required
+                 @input="validatePasswordField">
+          <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'" style="margin: 6px 0 6px -30px;"
              @click="showPassword = !showPassword"></i>
           <div class="invalid-feedback">
             {{ errors.password[errorIndexes[2]] }}
@@ -40,7 +39,7 @@
         </div>
         <div class="mb-3">
           <input id="password2" :type="showPassword ? 'text':'password'" class="form-control" maxlength="30"
-                 minlength="8" name="password2" pattern="[@$!%*?&,.a-zA-Z0-9]+" required @input="validatePasswordsField">
+                 minlength="8" name="password2" required @input="validatePasswordsField">
           <div class="invalid-feedback">
             {{ errors.password2[errorIndexes[3]] }}
           </div>
@@ -55,15 +54,15 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex"
 import {
   classUpdate,
-  usernameValidation,
   emailValidation,
-  passwordValidation,
+  isEmptyValidation,
   passwordsValidation,
-  isEmptyValidation
+  passwordValidation,
+  usernameValidation
 } from "~/modules/rules"
-import { mapMutations } from "vuex"
 
 export default {
   auth: false,

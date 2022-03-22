@@ -3,7 +3,7 @@ const REGEX_EMAIL = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 const REGEX_PASSWORD_DIGITS = /\d/
 const REGEX_PASSWORD_LOWERCASE = /[a-z]/
 const REGEX_PASSWORD_UPPERCASE = /[A-Z]/
-const REGEX_PASSWORD_SPECIAL_CHARS = /[#?!@$%^&*,.-]/
+const REGEX_PASSWORD_SPECIAL_CHARS = /[@$!%*?&#^:;\-~_,.`'"|\\\/({[<>\]})]/
 
 export let isEmptyValidation = (fieldValue, errorIndex) => !fieldValue ? 0 : errorIndex
 
