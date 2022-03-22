@@ -133,7 +133,6 @@ export default {
       if (form.checkValidity()) this.registerUser()
     },
     async registerUser() {
-      console.log(this.user)
       await this.$axios.post("/registration", this.user)
         .then(res => {
           this.setActivationEmail(this.user.email)
