@@ -1,14 +1,64 @@
 import {decrypt} from "@/modules/encryption"
 
 export const state = () => ({
+  encryptedData: null,
   records: [],
-  invalidKey: false
+  recordss: [
+    {
+      title: "",
+      username: "",
+      password: "",
+      notes: "",
+      website: "",
+      customFields: {
+        field1: "",
+        field2: ""
+      },
+      tags: [],
+      created: "",
+      updated: "",
+      expired: ""
+    }, {
+      title: "",
+      username: "",
+      password: "",
+      notes: "",
+      website: "",
+      customFields: {
+        field1: "",
+        field2: ""
+      },
+      tags: [],
+      created: "",
+      updated: "",
+      expired: "",
+      children: [
+        {
+          title: "",
+          username: "",
+          password: "",
+          notes: "",
+          website: "",
+          customFields: {
+            field1: "",
+            field2: ""
+          },
+          tags: [],
+          created: "",
+          updated: "",
+          expired: ""
+        }
+      ]
+    }
+  ],
+
+  validKey: false
 })
 
 export const mutations = {
   decryptRecords(state, data) {
     state.invalidKey = false
-    let records = decrypt(data.encryptedRecords, data.masterKey)
+    let records = decrypt(data.encryptedData, data.masterKey)
     if (records == null) state.invalidKey = true
     else
       for (let record in records) state.records.push(record)
@@ -16,18 +66,28 @@ export const mutations = {
 }
 
 export const actions = {
-  async reqRecords({commit}, masterKey) {
+  async requestVaultData({commit}) {
     let userId = this.$auth.user.id
     let {data} = await this.$axios.get(`/vault/${userId}`)
-    commit("decryptRecords", {encryptedRecords: data, masterKey})
+    if (data) commit("setEncryptedData")
+  },
+  async sendVaultData({}) {
+
+  },
+
+  // Setters
+  setEncryptedData(state, data) {
+    state.encryptedData = data + 1
   }
 }
 
 export const getters = {
-  isKeyInvalid(state) {
-    return state.invalidKey
+  getEncryptedData(state) {
+    return state.encryptedData
   },
   getRecords(state) {
     return state.records
+  }, isKeyValid(state) {
+    return state.invalidKey
   }
 }
