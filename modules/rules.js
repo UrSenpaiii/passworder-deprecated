@@ -24,17 +24,26 @@ export let emailValidation = (email) => {
   if (!REGEX_EMAIL.test(email)) return 2
 }
 
-export let passwordValidation = (password1) => {
-  if (!password1) return -1;
-  if (password1.length < 8) return 1
-  if (!REGEX_PASSWORD_LOWERCASE.test(password1)) return 2
-  if (!REGEX_PASSWORD_UPPERCASE.test(password1)) return 3
-  if (!REGEX_PASSWORD_DIGITS.test(password1)) return 4
-  if (!REGEX_PASSWORD_SPECIAL_CHARS.test(password1)) return 5
+export let passwordValidation = (password) => {
+  if (!password) return -1;
+  if (password.length < 8) return 1
+  if (!REGEX_PASSWORD_LOWERCASE.test(password)) return 2
+  if (!REGEX_PASSWORD_UPPERCASE.test(password)) return 3
+  if (!REGEX_PASSWORD_DIGITS.test(password)) return 4
+  if (!REGEX_PASSWORD_SPECIAL_CHARS.test(password)) return 5
 }
 
 export let passwordsValidation = (password1, password2) => {
   const isEquals = password1 === password2
   if (isEquals || !password2) return -1
   if (!isEquals) return 1
+}
+
+export let masterPasswordValidation = (masterPassword) => {
+  if (!masterPassword) return -1;
+  if (masterPassword.length < 12) return 1
+  if (!REGEX_PASSWORD_LOWERCASE.test(masterPassword)) return 2
+  if (!REGEX_PASSWORD_UPPERCASE.test(masterPassword)) return 3
+  if (!REGEX_PASSWORD_DIGITS.test(masterPassword)) return 4
+  if (!REGEX_PASSWORD_SPECIAL_CHARS.test(masterPassword)) return 5
 }

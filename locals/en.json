@@ -22,6 +22,13 @@
       "Invalid email"
     ],
     "fillField": "Fill this field",
+    "masterPassword": [
+      "Password length must be at least 12 characters",
+      "Password must contain at least 1 lowercase character",
+      "Password must contain at least 1 uppercase character",
+      "Password must contain at least 1 digit",
+      "Password must contain at least 1 special character"
+    ],
     "password": [
       "Password length must be at least 8 characters",
       "Password must contain at least 1 lowercase character",
