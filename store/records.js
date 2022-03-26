@@ -70,23 +70,18 @@ export const mutations = {
 export const actions = {
   async requestVaultData({commit}) {
     let userId = this.$auth.user.id
-    let {data} = await this.$axios.get(`/vault/${userId}`)
-    if (data) commit("setEncryptedData")
-  },
-  async sendVaultData({}) {
-
-  },
-
+    let {data} = await this.$axios.get(`/vaults/${userId}`)
+      .catch(e => console.log(e))
+    commit("setEncryptedData", data)
   }
 }
 
 export const getters = {
-  getEncryptedData(state) {
-    return state.encryptedData
+  getEncryptedDataTitles(state) {
+    console.log(state.encryptedData.map(d => d.title))
+    return state.encryptedData.map(d => d.title)
   },
-  getRecords(state) {
-    return state.records
-  }, isKeyValid(state) {
-    return state.invalidKey
+  isKeyValid(state) {
+    return state.validKey
   }
 }

@@ -5,7 +5,16 @@
   },
   "active": "Active",
   "adminPanel": "Admin Panel",
+  "alerts": {
+    "warning": {
+      "message": "You should write this master password down anywhere or store somewhere safe. We do not store your master password and won't be able to help if you lost it.",
+      "title": "Warning!"
+    }
+  },
   "btn": {
+    "back": "Back",
+    "continue": "Continue",
+    "enter": "Enter",
     "save": "Save",
     "submit": "Submit"
   },
@@ -42,6 +51,10 @@
     "server": [
       "This username already taken",
       "Account with this email adress already exist"
+    ],
+    "title": [
+      "Title length musy be at least 3 characters",
+      "Invalid title"
     ],
     "username": [
       "Username length must be at least 3 characters",

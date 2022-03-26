@@ -52,7 +52,7 @@ export default {
         }
       },
       redirect: {
-        home: "/vault"
+        home: "/vaults"
       }
     }],
     ["@nuxtjs/i18n", {

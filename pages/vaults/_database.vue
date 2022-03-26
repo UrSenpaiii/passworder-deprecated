@@ -25,18 +25,14 @@
           </div>
         </div>
 
-        <v-folder-layout v-if="layout==='folder'" :records="records"/>
-        <v-table-layout v-if="layout==='table'" :records="records"/>
-        <v-list-layout v-if="layout==='list'" :records="records"/>
-        <v-grid-layout v-if="layout==='grid'" :records="records"/>
-        {{ test }}
+        <component :is="`v-${layout}-layout`" :records="records"/>
       </main>
     </div>
   </div>
 </template>
 
 <script>
-import {encrypt} from "../../modules/encryption"
+import {encrypt} from "@/modules/encryption"
 
 export default {
   head() {
@@ -49,8 +45,7 @@ export default {
   },
   data: () => ({
     layout: "folder",
-    records: null,
-    test: null
+    records: null
   }),
   computed: {
     crypt() {
