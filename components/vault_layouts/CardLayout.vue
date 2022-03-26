@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 p-2 m-4 card" @mouseover="showFav = true" @mouseleave="showFav = false">
+  <div class="col-2 p-2 m-4 card border-secondary" @mouseover="showFav = true" @mouseleave="showFav = false">
     <div class="d-flex justify-content-between">
       <div>
         <transition><i class="bi bi-star h4" v-if="showFav"/></transition>
@@ -19,7 +19,7 @@
           </ul>
         </li>
         <li class="dropdown-item">{{ $t("duplicate") }}</li>
-        <li class="dropdown-item">{{ $t("history") }}</li>
+<!--        <li class="dropdown-item">{{ $t("history") }}</li>-->
         <li class="dropdown-divider my-0"></li>
         <li class="dropdown-item delete-btn">{{ $t("delete") }}</li>
       </ul>

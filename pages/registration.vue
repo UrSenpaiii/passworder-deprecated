@@ -140,3 +140,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.form-control[name=password] {
+  background-image: none !important;
+}
+</style>

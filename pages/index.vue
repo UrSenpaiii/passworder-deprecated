@@ -2,7 +2,7 @@
   <section>
     <div class="container">
       <main>
-        <nuxt-link :to="localePath('/vault')">{{ $t("vault") }}</nuxt-link>
+        <nuxt-link :to="localePath('/vaults')">{{ $t("vault") }}</nuxt-link>
       </main>
     </div>
   </section>

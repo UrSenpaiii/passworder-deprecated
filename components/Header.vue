@@ -3,6 +3,9 @@
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <nuxt-link :to="localePath('/')" class="navbar-brand">{{ sitename }}</nuxt-link>
+        <nuxt-link :to="localePath('/vaults')" class="navbar-brand me-auto ms-5">{{ $t("vault") }}</nuxt-link>
+
+
         <div class="d-flex" v-if="$auth.loggedIn">
           <i class="h2 text-white bi-person-circle"></i>
           <nuxt-link :to="localePath('/profile')" class="nav-link text-white">{{ $auth.user.username }}</nuxt-link>

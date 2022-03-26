@@ -9,10 +9,18 @@
         {{ $t("create") }}
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdown">
-        <li class="dropdown-item"><a href="#">{{ $t("password") }}</a></li>
-        <li class="dropdown-item"><a href="#">{{ $t("record") }}</a></li>
-        <li class="dropdown-item"><a href="#">{{ $t("folder") }}</a></li>
-        <li class="dropdown-item"><a href="#">{{ $t("vault") }}</a></li>
+        <li class="dropdown-item">
+          <nuxt-link class="d-block" :to="localePath('/')">{{ $t("password") }}</nuxt-link>
+        </li>
+        <li class="dropdown-item">
+          <nuxt-link class="d-block" :to="localePath('/')">{{ $t("record") }}</nuxt-link>
+        </li>
+        <li class="dropdown-item">
+          <nuxt-link class="d-block" :to="localePath('/')">{{ $t("folder") }}</nuxt-link>
+        </li>
+        <li class="dropdown-item">
+          <nuxt-link class="d-block" :to="localePath('/vaults/create')">{{ $t("vault") }}</nuxt-link>
+        </li>
       </ul>
     </div>
 
