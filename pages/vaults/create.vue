@@ -2,7 +2,7 @@
   <div class="container my-3">
     <h3>create vault</h3>
 
-    <div class="modal fade" id="warning">
+    <div id="warning" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="alert alert-warning my-0">
@@ -14,8 +14,8 @@
               <p>{{ $t("alerts.warning.message") }}</p>
             </div>
             <hr>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("btn.back") }}</button>
-            <button type="button" class="btn btn-primary" @click="">{{ $t("btn.continue") }}</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">{{ $t("btn.back") }}</button>
+            <button class="btn btn-primary" type="button" @click="createVault">{{ $t("btn.continue") }}</button>
           </div>
         </div>
       </div>
@@ -24,15 +24,15 @@
     <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
       <div class="mb-3">
         <label class="form-label" for="masterPassword1">{{ $t("title") }}</label>
-        <input id="title" v-model="title" type="text" class="form-control d-inline-block" maxlength="30" minlength="8"
-               name="title" required @input="validateTitleField">
+        <input id="title" v-model="vault.title" class="form-control d-inline-block" maxlength="30" minlength="3" name="title"
+               required type="text" @input="validateTitleField">
         <div class="invalid-feedback">
           {{ errors.title[errorIndexes[0]] }}
         </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="masterPassword1">{{ $t("password") }}</label>
-        <input id="masterPassword1" v-model="masterPassword" :type="showPassword ? 'text' : 'password'"
+        <input id="masterPassword1" v-model="vault.masterPassword" :type="showPassword ? 'text' : 'password'"
                class="form-control d-inline-block" maxlength="30" minlength="8" name="masterPassword1" required
                @input="validateMasterPasswordField">
         <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
@@ -48,7 +48,7 @@
           {{ errors.masterPassword2[errorIndexes[2]] }}
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">
+      <button class="btn btn-primary" type="submit">
         {{ $t("btn.submit") }}
       </button>
     </form>
@@ -59,9 +59,9 @@
 import {
   classUpdate,
   isEmptyValidation,
-  usernameValidation,
+  masterPasswordValidation,
   passwordsValidation,
-  masterPasswordValidation
+  usernameValidation
 } from "~/modules/rules"
 
 export default {
@@ -75,8 +75,10 @@ export default {
   },
   data() {
     return {
-      title: null,
-      masterPassword: null,
+      vault: {
+        title: null,
+        masterPassword: null
+      },
       showPassword: false,
       errorIndexes: [-1, -1, -1],
       errors: {
@@ -116,16 +118,11 @@ export default {
       }
       if (form.checkValidity()) {
         let myModal = new bootstrap.Modal(document.getElementById('warning'));
-        console.log(myModal)
         myModal.show()
       }
     },
-    async createVault() {
-      await this.$axios.post("/vault/create", this.user)
-        .then(res => {
-
-        })
-        .catch(e => console.log(e))
+    createVault() {
+      this.$store.dispatch("records/createVault", this.vault)
     }
   }
 }

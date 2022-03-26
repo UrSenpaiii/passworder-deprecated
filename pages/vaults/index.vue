@@ -30,7 +30,7 @@ export default {
     }
   },
   async fetch({store}){
-    await store.dispatch("records/requestVaultData")
+    await store.dispatch("records/requestVaultsData")
   },
 
   // methods: {

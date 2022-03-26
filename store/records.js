@@ -1,3 +1,5 @@
+import {encrypt, decrypt} from "../modules/encryption";
+
 export const state = () => ({
   encryptedData: [],
   records: {
@@ -68,11 +70,15 @@ export const mutations = {
 }
 
 export const actions = {
-  async requestVaultData({commit}) {
+  async requestVaultsData({commit}) {
     let userId = this.$auth.user.id
     let {data} = await this.$axios.get(`/vaults/${userId}`)
       .catch(e => console.log(e))
     commit("setEncryptedData", data)
+  },
+  async createVault({commit}, {title, masterPassword}) {
+    let encryptedVault = encrypt({[title]: {}}, masterPassword)
+    await this.$axios.post("/vaults/create", {encryptedVault})
   }
 }
 
