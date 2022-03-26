@@ -44,7 +44,7 @@
             {{ errors.password2[errorIndexes[3]] }}
           </div>
         </div>
-        <button class="btn btn-primary" type="submit">{{ $t("btn.submit") }}</button>
+        <button class="btn btn-primary" :disabled="disabled" type="submit">{{ $t("btn.submit") }}</button>
       </form>
       <br>
       <nuxt-link :to="localePath('/login')">{{ $t("haveAcc") }}</nuxt-link>
@@ -83,7 +83,8 @@ export default {
       },
       errorIndexes: [-1, -1, -1, -1],
       serverErrorIndexes: [-1, -1],
-      showPassword: false
+      showPassword: false,
+      disabled: false
     }
   },
   methods: {
@@ -122,7 +123,10 @@ export default {
         this.$set(this.errorIndexes, i, isEmptyValidation(form[i].value, this.errorIndexes[i]))
         classUpdate(form[i], this.errorIndexes[i])
       }
-      if (form.checkValidity()) this.registerUser()
+      if (form.checkValidity()) {
+        this.disabled = true
+        this.registerUser()
+      }
     },
     async registerUser() {
       await this.$axios.post("/registration", this.user)
@@ -130,6 +134,7 @@ export default {
           this.setActivationEmail(this.user.email)
           if (!res.data[0]) return this.$router.push("/activation")
           this.serverErrorsHandler(res.data - 1)
+          this.disabled = false
         })
         .catch(e => console.log(e))
     },
