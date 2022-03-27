@@ -132,7 +132,7 @@ export default {
       await this.$axios.post("/registration", this.user)
         .then(res => {
           this.setActivationEmail(this.user.email)
-          if (!res.data[0]) return this.$router.push("/activation")
+          if (!res.data[0]) return this.$router.push(this.localePath("/activation"))
           this.serverErrorsHandler(res.data - 1)
           this.disabled = false
         })

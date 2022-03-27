@@ -52,7 +52,7 @@ export default {
         }
       },
       redirect: {
-        home: "/vaults"
+        home: "/vaults" // FIXME i18n fucked all up :(
       }
     }],
     ["@nuxtjs/i18n", {

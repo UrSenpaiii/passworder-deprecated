@@ -1,6 +1,11 @@
 {
   "activation": {
     "failed": "This activation code does not exist",
+    "registrationComplete": {
+      "message1": "Please check your email",
+      "message2": "to activate account and start using it.",
+      "title": "Registration successfully completed!"
+    },
     "success": "You successfully activated your account"
   },
   "active": "Active",
@@ -13,6 +18,7 @@
   },
   "btn": {
     "back": "Back",
+    "cancel": "Сancel",
     "continue": "Continue",
     "enter": "Enter",
     "save": "Save",
