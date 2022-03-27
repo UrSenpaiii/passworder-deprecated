@@ -13,9 +13,9 @@
         </form>
         <div class="modal-footer border-0 pt-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("btn.cancel") }}</button>
-          <nuxt-link :to="localePath(`/vaults/${title}`)" class="btn btn-primary">
+          <button @click="decrypt" class="btn btn-primary">
             {{ $t("btn.enter") }}
-          </nuxt-link>
+          </button>
         </div>
       </div>
     </div>
@@ -29,9 +29,12 @@ export default {
   props: {id: String},
   data: () => ({
     showPassword: false,
-    key: ""
+    key: null
   }),
   methods: {
+    decrypt() {
+
+    },
     ...mapGetters({
       isKeyValid: "records/isKeyValid",
     })

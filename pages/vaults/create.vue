@@ -4,7 +4,7 @@
       <i class="bi bi-arrow-left h1 p-1"/> <span class="h3">{{ $t("btn.back") }}</span>
     </nuxt-link>
     <div class="container my-3">
-      <h3>create vault</h3>
+      <h3>{{ $t("createVault") }}</h3>
       <div id="warning" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -94,7 +94,6 @@ export default {
       errorIndexes: [-1, -1, -1],
       serverErrorIndex: -1,
       showPassword: false,
-      // warning: this.createModal
     }
   },
   computed: {
@@ -138,11 +137,9 @@ export default {
     async createVault({title, masterPassword}) {
       let pid = this.$auth.user.id
       let encryptedData = encrypt({}, masterPassword)
-      console.log({pid, title, encryptedData})
       await this.$axios.post("/vaults/create", {pid, title, encryptedData})
         .then(res => this.serverErrorIndex = res.data ? -1 : 0)
         .catch(e => console.log(e))
-
       this.formClear()
     },
     formClear() {

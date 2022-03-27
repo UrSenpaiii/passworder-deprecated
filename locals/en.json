@@ -26,6 +26,7 @@
   },
   "copy": "Copy",
   "create": "Create",
+  "createVault": "Create vault",
   "delete": "Delete",
   "duplicate": "Duplicate",
   "edit": "Edit",
