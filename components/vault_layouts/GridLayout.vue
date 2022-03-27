@@ -1,7 +1,7 @@
 <template>
   <div class="row mx-0">
     <v-card-layout v-for="record in records" :key="record.title"
-                   :title="record.title" :login="record.login" :password="record.password"/>
+                   :title="record.title" :username="record.username" :password="record.password"/>
   </div>
 </template>
 

@@ -4,15 +4,14 @@
     <i class="bi bi-file-earmark h3 align-self-center mx-1"></i>
     <div>
       <div class="h5 my-0">{{ title }}</div>
-      <div class="text-muted h6">{{ login }}</div>
+      <div class="text-muted h6">{{ username }}</div>
     </div>
   </li>
 </template>
 
 <script>
 export default {
-  props: {num: Number, title: String, login: String},
-  data: () => ({})
+  props: {num: Number, title: String, username: String}
 }
 </script>
 

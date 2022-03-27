@@ -1,22 +1,32 @@
 <template>
-  <main class="p-4">
-    <form>
-      <div class="mb-3">
-        <label class="form-label" for="password">{{ $t("masterPassword") }}</label>
-        <input id="password" v-model="key" :type="showPassword ? 'text' : 'password'"
-               class="form-control d-inline-block" maxlength="30" minlength="8" name="password" required>
-        <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'" style="margin: 5.5px 0 5.5px -30px;"
-           @click="showPassword = !showPassword"></i>
+  <div class="modal fade" :id="id" tabindex="-1" :aria-labelledby="id" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <label class="modal-title form-label h4" for="password">{{ $t("masterPassword") }}</label>
+        </div>
+        <form class="modal-body">
+          <input id="password" v-model="key" :type="showPassword ? 'text' : 'password'"
+                 class="form-control d-inline-block" maxlength="30" minlength="8" name="password" required>
+          <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
+             style="margin: 5.5px 0 5.5px -30px;" @click="showPassword = !showPassword"/>
+        </form>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("btn.cancel") }}</button>
+          <nuxt-link :to="localePath(`/vaults/${title}`)" class="btn btn-primary">
+            {{ $t("btn.enter") }}
+          </nuxt-link>
+        </div>
       </div>
-      <button class="btn btn-primary" type="button" @click="getRecords(key)">{{ $t("btn.submit") }}</button>
-    </form>
-  </main>
+    </div>
+  </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex"
 
 export default {
+  props: {id: String},
   data: () => ({
     showPassword: false,
     key: ""

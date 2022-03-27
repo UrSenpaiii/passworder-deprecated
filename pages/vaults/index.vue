@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <v-key :id="clickedTitle"/>
       <v-sidebar/>
       <div class="col-10">
         <div class="row">
@@ -15,9 +16,10 @@
           <div class="card col-1 m-3 text-center" v-for="title in titles" :key="title">
             <div class="card-body">
               <h5 class="card-title">{{ title }}</h5>
-              <nuxt-link :to="localePath(`/vaults/${title}`)" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#${title}`"
+                      @mouseenter="clickedTitle = title">
                 {{ $t("btn.enter") }}
-              </nuxt-link>
+              </button>
             </div>
           </div>
         </div>
@@ -28,8 +30,6 @@
 </template>
 
 <script>
-// import {mapActions, mapGetters} from "vuex"
-
 export default {
   head() {
     return {
@@ -40,7 +40,8 @@ export default {
     }
   },
   data: () => ({
-    titles: []
+    titles: [],
+    clickedTitle: null
   }),
   async fetch({store}) {
     await store.dispatch("records/requestVaultsData")
@@ -48,14 +49,6 @@ export default {
   mounted() {
     this.titles = this.$store.state.records.encryptedData.map(e => e.title)
   }
-  // methods: {
-  //   ...mapActions({
-  //     requestVaultData: "records/requestVaultData"
-  //   }),
-  //   ...mapGetters({
-  //     getEncryptedDataTitles: "records/getEncryptedDataTitles"
-  //   })
-  // }
 }
 </script>
 

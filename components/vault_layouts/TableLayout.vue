@@ -12,7 +12,7 @@
     <tr v-for="(record, i) in records">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ record.title }}</td>
-      <td>{{ record.login }}</td>
+      <td>{{ record.username }}</td>
       <td>{{ record.password }}</td>
     </tr>
     </tbody>
@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  props: {records: Array},
+  props: {records: Array}
 }
 </script>

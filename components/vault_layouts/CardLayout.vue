@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  props: {title: String, login: String},
+  props: {title: String, username: String},
   data: () => ({
     copyClicked: false,
     showFav: false

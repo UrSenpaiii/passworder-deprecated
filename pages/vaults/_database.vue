@@ -45,11 +45,20 @@ export default {
   },
   data: () => ({
     layout: "folder",
-    records: null
+    records: null,
+    recordsList: null,
+    current: null
   }),
-  computed: {
-    crypt() {
-      console.log(encrypt("this.data", "key"))
+  fetch({store}) {
+    store.dispatch("")
+  },
+  mounted() {
+    this.recordsList = this.asList(this.records)
+  },
+  methods: {
+    asList(node) {
+      if (!node.children) return [node];
+      return [].concat(...node.children.map(ch => this.asList(ch)));
     }
   }
 }
