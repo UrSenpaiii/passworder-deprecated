@@ -147,9 +147,17 @@ export default {
     },
     formClear() {
       let form = document.getElementsByTagName("form")[0]
-      if (this.serverErrorIndex)
-        for (let i = 0; i < form.length - 1; i++)
-          form[i].value = ""
+      if (this.serverErrorIndex) {
+        for (let i = 0; i < form.length - 1; i++) {
+          form[i].value = null
+          this.$set(this.errorIndexes, i, -1)
+          classUpdate(form[i], this.errorIndexes[i])
+          console.log(form[i], form[i].value)
+        }
+        // FIXME right reset with form.value
+        this.vault.title = ""
+        this.vault.masterPassword = ""
+      }
     }
   }
 }
