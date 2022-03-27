@@ -79,7 +79,7 @@ export default {
         email: [this.$t("errors.fillField"), ...this.$t("errors.email")],
         password: [this.$t("errors.fillField"), ...this.$t("errors.password")],
         password2: [this.$t("errors.fillField"), ...this.$t("errors.passwords")],
-        server: this.$t("errors.server"),
+        server: this.$t("errors.server.registration"),
       },
       errorIndexes: [-1, -1, -1, -1],
       serverErrorIndexes: [-1, -1],

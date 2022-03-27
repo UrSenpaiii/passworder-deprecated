@@ -1,57 +1,65 @@
 <template>
-  <div class="container my-3">
-    <h3>create vault</h3>
-
-    <div id="warning" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="alert alert-warning my-0">
-            <h4 class="alert-heading">
-              <i class="bi bi-exclamation-triangle-fill m-0"/> {{ $t("alerts.warning.title") }}
-            </h4>
-            <hr>
-            <div class="d-flex">
-              <p>{{ $t("alerts.warning.message") }}</p>
+  <div class="container-fluid">
+    <nuxt-link class="d-inline-flex align-items-center position-absolute text-muted" :to="localePath('/vaults')">
+      <i class="bi bi-arrow-left h1 p-1"/> <span class="h3">{{ $t("btn.back") }}</span>
+    </nuxt-link>
+    <div class="container my-3">
+      <h3>create vault</h3>
+      <div id="warning" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="alert alert-warning my-0">
+              <h4 class="alert-heading">
+                <i class="bi bi-exclamation-triangle-fill m-0"/> {{ $t("alerts.warning.title") }}
+              </h4>
+              <hr>
+              <div class="d-flex">
+                <p>{{ $t("alerts.warning.message") }}</p>
+              </div>
+              <hr>
+              <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">{{ $t("btn.back") }}</button>
+              <button class="btn btn-primary" data-bs-dismiss="modal" type="button" @click="createVault(vault)">
+                {{ $t("btn.continue") }}
+              </button>
             </div>
-            <hr>
-            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">{{ $t("btn.back") }}</button>
-            <button class="btn btn-primary" type="button" @click="createVault">{{ $t("btn.continue") }}</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
-      <div class="mb-3">
-        <label class="form-label" for="masterPassword1">{{ $t("title") }}</label>
-        <input id="title" v-model="vault.title" class="form-control d-inline-block" maxlength="30" minlength="3" name="title"
-               required type="text" @input="validateTitleField">
-        <div class="invalid-feedback">
-          {{ errors.title[errorIndexes[0]] }}
+      <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
+        <div class="mb-3">
+          <label class="form-label" for="masterPassword1">{{ $t("title") }}</label>
+          <input id="title" v-model="vault.title" class="form-control d-inline-block" maxlength="30" minlength="3"
+                 name="title"
+                 required type="text" @input="validateTitleField">
+          <div class="invalid-feedback">
+            {{ errors.title[errorIndexes[0]] }}
+          </div>
+          <div v-if="serverErrorIndex !== -1" class="invalid-tooltip position-relative d-inline-block">
+            {{ errors.server[serverErrorIndex] }}
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="masterPassword1">{{ $t("password") }}</label>
-        <input id="masterPassword1" v-model="vault.masterPassword" :type="showPassword ? 'text' : 'password'"
-               class="form-control d-inline-block" maxlength="30" minlength="8" name="masterPassword1" required
-               @input="validateMasterPasswordField">
-        <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
-           style="margin: 6px 0 6px -30px;" @click="showPassword = !showPassword"></i>
-        <div class="invalid-feedback">
-          {{ errors.masterPassword1[errorIndexes[1]] }}
+        <div class="mb-3">
+          <label class="form-label" for="masterPassword1">{{ $t("password") }}</label>
+          <input id="masterPassword1" v-model="vault.masterPassword" :type="showPassword ? 'text' : 'password'"
+                 class="form-control d-inline-block" maxlength="30" minlength="8" name="masterPassword1" required
+                 @input="validateMasterPasswordField">
+          <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'"
+             style="margin: 6px 0 6px -30px;" @click="showPassword = !showPassword"></i>
+          <div class="invalid-feedback">
+            {{ errors.masterPassword1[errorIndexes[1]] }}
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <input id="masterPassword2" :type="showPassword ? 'text' : 'password'" class="form-control" maxlength="30"
-               minlength="8" name="masterPassword2" required @input="validateMasterPasswordFields">
-        <div class="invalid-feedback">
-          {{ errors.masterPassword2[errorIndexes[2]] }}
+        <div class="mb-3">
+          <input id="masterPassword2" :type="showPassword ? 'text' : 'password'" class="form-control" maxlength="30"
+                 minlength="8" name="masterPassword2" required @input="validateMasterPasswordFields">
+          <div class="invalid-feedback">
+            {{ errors.masterPassword2[errorIndexes[2]] }}
+          </div>
         </div>
-      </div>
-      <button class="btn btn-primary" type="submit">
-        {{ $t("btn.submit") }}
-      </button>
-    </form>
+        <button class="btn btn-primary" type="submit">{{ $t("btn.submit") }}</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -63,6 +71,7 @@ import {
   passwordsValidation,
   usernameValidation
 } from "~/modules/rules"
+import {encrypt} from "@/modules/encryption";
 
 export default {
   head() {
@@ -75,17 +84,22 @@ export default {
   },
   data() {
     return {
-      vault: {
-        title: null,
-        masterPassword: null
-      },
-      showPassword: false,
-      errorIndexes: [-1, -1, -1],
+      vault: {title: null, masterPassword: null},
       errors: {
         title: [this.$t("errors.fillField"), ...this.$t("errors.title")],
         masterPassword1: [this.$t("errors.fillField"), ...this.$t("errors.masterPassword")],
         masterPassword2: [this.$t("errors.fillField"), ...this.$t("errors.passwords")],
-      }
+        server: this.$t("errors.server.vault")
+      },
+      errorIndexes: [-1, -1, -1],
+      serverErrorIndex: -1,
+      showPassword: false,
+      // warning: this.createModal
+    }
+  },
+  computed: {
+    createModal() {
+      new bootstrap.Modal(document.getElementById("warning"))
     }
   },
   methods: {
@@ -117,18 +131,36 @@ export default {
         classUpdate(form[i], this.errorIndexes[i])
       }
       if (form.checkValidity()) {
-        let myModal = new bootstrap.Modal(document.getElementById('warning'));
-        myModal.show()
+        new bootstrap.Modal(document.getElementById("warning"))
+          .show()
       }
     },
-    createVault() {
-      this.$store.dispatch("records/createVault", this.vault)
+    async createVault({title, masterPassword}) {
+      let pid = this.$auth.user.id
+      let encryptedData = encrypt({}, masterPassword)
+      console.log({pid, title, encryptedData})
+      await this.$axios.post("/vaults/create", {pid, title, encryptedData})
+        .then(res => this.serverErrorIndex = res.data ? -1 : 0)
+        .catch(e => console.log(e))
+
+      this.formClear()
+    },
+    formClear() {
+      let form = document.getElementsByTagName("form")[0]
+      if (this.serverErrorIndex)
+        for (let i = 0; i < form.length - 1; i++)
+          form[i].value = ""
     }
   }
 }
 </script>
 
 <style scoped>
+a:hover > span, a:hover > i  {
+  transition: all .4s;
+  color: #282828;
+}
+
 .form-control[name=masterPassword1] {
   background-image: none !important;
 }

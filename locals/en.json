@@ -48,10 +48,15 @@
     "passwords": [
       "Passwords not equals"
     ],
-    "server": [
-      "This username already taken",
-      "Account with this email adress already exist"
-    ],
+    "server": {
+      "registration": [
+        "This username already taken",
+        "Account with this email adress already exist"
+      ],
+      "vault": [
+        "Vault with this title already exist"
+      ]
+    },
     "title": [
       "Title length musy be at least 3 characters",
       "Invalid title"

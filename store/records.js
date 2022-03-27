@@ -76,15 +76,17 @@ export const actions = {
       .catch(e => console.log(e))
     commit("setEncryptedData", data)
   },
-  async createVault({commit}, {title, masterPassword}) {
-    let encryptedVault = encrypt({[title]: {}}, masterPassword)
-    await this.$axios.post("/vaults/create", {encryptedVault})
+  async createVault({commit, dispatch}, {title, masterPassword}) {
+    let pid = this.$auth.user.id
+    let encryptedData = encrypt({}, masterPassword)
+    console.log({pid, title, encryptedData})
+    await this.$axios.post("/vaults/create", {pid, title, encryptedData})
+    dispatch("requestVaultsData")
   }
 }
 
 export const getters = {
   getEncryptedDataTitles(state) {
-    console.log(state.encryptedData.map(d => d.title))
     return state.encryptedData.map(d => d.title)
   },
   isKeyValid(state) {
