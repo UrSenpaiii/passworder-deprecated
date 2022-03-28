@@ -13,7 +13,7 @@
             </div>
           </nuxt-link>
 
-          <div class="card col-1 m-3 text-center" v-for="title in titles" :key="title">
+          <div id="vault" class="card col-1 m-3 text-center" v-for="title in titles" :key="title">
             <div class="card-body">
               <h5 class="card-title">{{ title }}</h5>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#${title}`"
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#newVault {
+#newVault, #vault {
   transition: all .3s;
   &:hover {
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
