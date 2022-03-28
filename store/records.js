@@ -67,13 +67,19 @@ export const state = () => ({
       }
     ]
   },
-  validKey: false
+  isKeyValid: false
 })
 
 export const mutations = {
   // Setters
   setEncryptedData(state, encryptedData) {
     state.encryptedData = encryptedData
+  },
+  setRecords(state, records) {
+    state.records = records
+  },
+  setKeyValidity(state, keyValidity) {
+    state.isKeyValid = keyValidity
   }
 }
 
@@ -86,18 +92,17 @@ export const actions = {
   },
   async createVault({commit, dispatch}, {title, masterPassword}) {
     let pid = this.$auth.user.id
-    let encryptedData = encrypt({}, masterPassword)
+    let encryptedData = encrypt({children: []}, masterPassword)
     console.log({pid, title, encryptedData})
     await this.$axios.post("/vaults/create", {pid, title, encryptedData})
     dispatch("requestVaultsData")
-  }
-}
-
-export const getters = {
-  getEncryptedDataTitles(state) {
-    return state.encryptedData.map(d => d.title)
   },
-  isKeyValid(state) {
-    return state.validKey
+  enterVault({commit, state}, {title, key}) {
+    let encryptedData = state.encryptedData.filter(d => d.title === title)[0].encryptedData
+    let records = decrypt(encryptedData, key)
+    if (records) {
+      commit("setRecords", records)
+      commit("setKeyValidity", true)
+    } else commit("setKeyValidity", false)
   }
 }

@@ -149,7 +149,6 @@ export default {
           form[i].value = null
           this.$set(this.errorIndexes, i, -1)
           classUpdate(form[i], this.errorIndexes[i])
-          console.log(form[i], form[i].value)
         }
         // FIXME right reset with form.value
         this.vault.title = ""

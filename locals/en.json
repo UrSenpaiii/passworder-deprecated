@@ -38,6 +38,7 @@
       "Invalid email"
     ],
     "fillField": "Fill this field",
+    "key": "Master password is incorrect",
     "masterPassword": [
       "Password length must be at least 12 characters",
       "Password must contain at least 1 lowercase character",
