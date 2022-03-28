@@ -43,12 +43,14 @@ export default {
       ]
     }
   },
-  data: () => ({
-    layout: "folder",
-    records: null,
-    recordsList: null,
-    current: null
-  }),
+  data() {
+    return {
+      layout: "folder",
+      records: this.$store.state.records.records,
+      recordsList: null,
+      current: null
+    }
+  },
   fetch({store}) {
     store.dispatch("")
   },

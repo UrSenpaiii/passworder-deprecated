@@ -12,7 +12,6 @@
               <i class="bi bi-plus h1"/>
             </div>
           </nuxt-link>
-
           <div id="vault" class="card col-1 m-3 text-center" v-for="title in titles" :key="title">
             <div class="card-body">
               <h5 class="card-title">{{ title }}</h5>
@@ -24,7 +23,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
