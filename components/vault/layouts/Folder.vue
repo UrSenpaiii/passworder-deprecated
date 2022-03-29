@@ -30,3 +30,14 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+#root {
+  transition: all .2s;
+
+  &:hover {
+    background-color: #EEE;
+    cursor: pointer;
+  }
+}
+</style>

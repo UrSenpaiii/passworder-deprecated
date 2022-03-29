@@ -1,5 +1,5 @@
 <template>
-  <li class="d-flex bg-white px-3 py-1 border">
+  <li class="d-flex px-3 py-1 border">
     <span v-if="num" class="align-self-center text-muted">{{ `${num}.` }}</span>
     <i class="bi bi-file-earmark h3 align-self-center mx-1"></i>
     <div>
@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 li:hover {
-  background-color: #F7F7F7 !important;
+  background-color: #F7F7F7;
   cursor: pointer;
 }
 </style>

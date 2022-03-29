@@ -4,11 +4,13 @@
       <div>
         <transition><i class="bi bi-star h4" v-if="showFav"/></transition>
       </div>
-      <i class="bi bi-three-dots h4 mx-2 dropdown-toggle" @click="copyClicked = false" data-bs-toggle="dropdown" aria-expanded="false"/>
+      <i class="bi bi-three-dots h4 mx-2 dropdown-toggle" @click="copyClicked = false" data-bs-toggle="dropdown"
+         aria-expanded="false"/>
       <ul class="dropdown-menu">
         <li class="dropdown-item">{{ $t("edit") }}</li>
         <li class="dropdown-item dropend p-0">
-          <div class="dropdown-toggle px-3 py-1" @click="e => e.stopPropagation()" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="dropdown-toggle px-3 py-1" @click="e => e.stopPropagation()" data-bs-toggle="dropdown"
+               aria-expanded="false">
             <div class="d-flex justify-content-between" @click="copyClicked = !copyClicked">
               <a>{{ $t("copy") }}</a> <i :class="'bi bi-caret-right' + (copyClicked ? '-fill' : '')"/>
             </div>
@@ -19,7 +21,7 @@
           </ul>
         </li>
         <li class="dropdown-item">{{ $t("duplicate") }}</li>
-<!--        <li class="dropdown-item">{{ $t("history") }}</li>-->
+        <!--        <li class="dropdown-item">{{ $t("history") }}</li>-->
         <li class="dropdown-divider my-0"></li>
         <li class="dropdown-item delete-btn">{{ $t("delete") }}</li>
       </ul>
@@ -27,7 +29,7 @@
     <div class="card-body text-center p-0">
       <div class="bi bi-circle h1"/>
       <span class="card-title h5 m-0">{{ title }}</span>
-      <p class="card-text text-muted">{{ login }}</p>
+      <p class="card-text text-muted">{{ username }}</p>
     </div>
   </div>
 </template>
@@ -42,7 +44,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+div.card {
+  transition: all .3s;
+
+  &:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+  }
+}
+
 .card {
   cursor: pointer;
 }
@@ -50,6 +60,7 @@ export default {
 .v-enter-active, .v-leave-active {
   transition: opacity .1s ease;
 }
+
 .v-enter-from, .v-leave-to {
   opacity: 0;
 }
