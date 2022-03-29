@@ -25,15 +25,13 @@
           </div>
         </div>
 
-        <component :is="`v-${layout}-layout`" :records="records"/>
+<!--        <component :is="`v-${layout}-layout`" :records="records"/>-->
       </main>
     </div>
   </div>
 </template>
 
 <script>
-import {encrypt} from "@/modules/encryption"
-
 export default {
   head() {
     return {
@@ -55,12 +53,13 @@ export default {
     store.dispatch("")
   },
   mounted() {
-    this.recordsList = this.asList(this.records)
+    this.recordsList = this.asList(this.records)[0]
   },
   methods: {
     asList(node) {
-      if (!node.children) return [node];
-      return [].concat(...node.children.map(ch => this.asList(ch)));
+      if (Array.isArray(node)) return node.map(el => this.asList(el))
+      if (!node.children) return [node]
+      return [].concat(...node.children.map(ch => this.asList(ch)))
     }
   }
 }

@@ -2,8 +2,7 @@ import {encrypt, decrypt} from "@/modules/encryption";
 
 export const state = () => ({
   encryptedData: [],
-  records: {
-    children: [
+  records: [
       {
         title: "Default Group",
         children: [
@@ -65,8 +64,7 @@ export const state = () => ({
           }
         ]
       }
-    ]
-  },
+    ],
   isKeyValid: false
 })
 
