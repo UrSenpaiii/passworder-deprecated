@@ -25,7 +25,7 @@
           </div>
         </div>
 
-<!--        <component :is="`v-${layout}-layout`" :records="records"/>-->
+        <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
     </div>
   </div>

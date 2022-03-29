@@ -5,15 +5,17 @@
       <th scope="col">#</th>
       <th scope="col">{{ $t("title") }}</th>
       <th scope="col">{{ $t("login") }}</th>
+      <th scope="col">{{ $t("website") }}</th>
       <th scope="col">{{ $t("password") }}</th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(record, i) in records">
+    <tr v-for="(record, i) in recordsList">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ record.title }}</td>
       <td>{{ record.username }}</td>
-      <td>{{ record.password }}</td>
+      <td><a target="_blank" :href="record.website">{{ record.website }}</a></td>
+      <td>{{censuredPasswordLength(record.password) }}</td>
     </tr>
     </tbody>
   </table>
@@ -21,6 +23,13 @@
 
 <script>
 export default {
-  props: {records: Array}
+  props: {recordsList: Array},
+  methods: {
+    censuredPasswordLength(password) {
+      let res = ""
+      for (let i = 0; i < password.length; i++) res += "*"
+      return res
+    }
+  }
 }
 </script>
