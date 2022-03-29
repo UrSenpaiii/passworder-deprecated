@@ -49,9 +49,6 @@ export default {
       current: null
     }
   },
-  fetch({store}) {
-    store.dispatch("")
-  },
   mounted() {
     this.recordsList = this.asList(this.records)[0]
   },

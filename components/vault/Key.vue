@@ -52,7 +52,6 @@ export default {
       this.$store.dispatch("records/enterVault", {title: this.id, key: this.key})
       if (this.$store.state.records.isKeyValid) this.$router.push(this.localePath(`/vaults/${this.id}`))
       else classUpdate(document.getElementsByTagName("form")[0][0], this.errorIndex = 1)
-
     }
   }
 }
