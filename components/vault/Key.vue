@@ -14,7 +14,8 @@
         </div>
         <div class="modal-footer border-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("btn.cancel") }}</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{ $t("btn.enter") }}</button>
+          <button type="submit" class="btn btn-primary">{{ $t("btn.enter") }}</button>
+          <button id="close" class="d-none" data-bs-dismiss="modal"/>
         </div>
       </form>
     </div>
@@ -50,7 +51,10 @@ export default {
     },
     decrypt() {
       this.$store.dispatch("records/enterVault", {title: this.id, key: this.key})
-      if (this.$store.state.records.isKeyValid) this.$router.push(this.localePath(`/vaults/${this.id}`))
+      if (this.$store.state.records.isKeyValid) {
+        document.getElementById("close").click()
+        this.$router.push(this.localePath(`/vaults/${this.id}`))
+      }
       else classUpdate(document.getElementsByTagName("form")[0][0], this.errorIndex = 1)
     }
   }
