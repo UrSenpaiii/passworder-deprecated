@@ -18,10 +18,10 @@
           </div>
 
           <div>
-            <a @click="layout='folder'" class="mx-2 btn btn-light bi bi-folder-fill"></a>
-            <a @click="layout='table'" class="mx-2 btn btn-light bi bi-table"></a>
-            <a @click="layout='list'" class="mx-2 btn btn-light bi bi-card-list"></a>
-            <a @click="layout='grid'" class="mx-2 btn btn-light bi bi-grid-3x2"></a>
+            <a @click="layout='folder'" :class="['mx-2 btn btn-light bi bi-folder-fill', activeLayout('folder')]"/>
+            <a @click="layout='table'" :class="['mx-2 btn btn-light bi bi-table', activeLayout('table')]"/>
+            <a @click="layout='list'" :class="['mx-2 btn btn-light bi bi-card-list', activeLayout('list')]"/>
+            <a @click="layout='grid'" :class="['mx-2 btn btn-light bi bi-grid-3x2', activeLayout('grid')]"/>
           </div>
         </div>
 
@@ -53,6 +53,9 @@ export default {
     this.recordsList = this.asList(this.records)[0]
   },
   methods: {
+    activeLayout(layout) {
+      return this.layout === layout ? "border" : ""
+    },
     asList(node) {
       if (Array.isArray(node)) return node.map(el => this.asList(el))
       if (!node.children) return [node]
