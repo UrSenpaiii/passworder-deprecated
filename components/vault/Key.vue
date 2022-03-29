@@ -14,7 +14,7 @@
         </div>
         <div class="modal-footer border-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("btn.cancel") }}</button>
-          <button type="submit" class="btn btn-primary">{{ $t("btn.enter") }}</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">{{ $t("btn.enter") }}</button>
         </div>
       </form>
     </div>
