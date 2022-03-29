@@ -4,27 +4,7 @@
       <div>
         <transition><i class="bi bi-star h4" v-if="showFav"/></transition>
       </div>
-      <i class="bi bi-three-dots h4 mx-2 dropdown-toggle" @click="copyClicked = false" data-bs-toggle="dropdown"
-         aria-expanded="false"/>
-      <ul class="dropdown-menu">
-        <li class="dropdown-item">{{ $t("edit") }}</li>
-        <li class="dropdown-item dropend p-0">
-          <div class="dropdown-toggle px-3 py-1" @click="e => e.stopPropagation()" data-bs-toggle="dropdown"
-               aria-expanded="false">
-            <div class="d-flex justify-content-between" @click="copyClicked = !copyClicked">
-              <a>{{ $t("copy") }}</a> <i :class="'bi bi-caret-right' + (copyClicked ? '-fill' : '')"/>
-            </div>
-          </div>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">{{ $t("login") }}</li>
-            <li class="dropdown-item">{{ $t("password") }}</li>
-          </ul>
-        </li>
-        <li class="dropdown-item">{{ $t("duplicate") }}</li>
-        <!--        <li class="dropdown-item">{{ $t("history") }}</li>-->
-        <li class="dropdown-divider my-0"></li>
-        <li class="dropdown-item delete-btn">{{ $t("delete") }}</li>
-      </ul>
+      <v-context-menu/>
     </div>
     <div class="card-body text-center p-0">
       <div class="bi bi-circle h1"/>
@@ -38,7 +18,6 @@
 export default {
   props: {title: String, username: String},
   data: () => ({
-    copyClicked: false,
     showFav: false
   })
 }
@@ -65,19 +44,7 @@ div.card {
   opacity: 0;
 }
 
-i.bi.h4:hover {
+i:hover {
   color: #606266;
-}
-
-.dropdown-toggle::after {
-  display: none;
-}
-
-.dropdown-menu.show {
-  padding: 0;
-}
-
-.delete-btn:hover {
-  background-color: #FF484D;
 }
 </style>
