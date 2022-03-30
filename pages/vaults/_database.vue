@@ -25,7 +25,7 @@
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
       <component v-if="menu" :is="`v-${menu}-menu`"/>
-      <v-create-menu/>
+      <v-view-menu v-if="currentRecord.length" :record="currentRecord[0]" />
     </div>
   </div>
 </template>
@@ -46,9 +46,14 @@ export default {
       layout: "folder",
       menu: null,
       records: this.$store.state.records.records,
-      recordsList: null,
+      recordsList: [],
       current: null,
       id: 0
+    }
+  },
+  computed: {
+    currentRecord() {
+      return this.recordsList.filter(el => el.id === this.$store.state.records.active)
     }
   },
   mounted() {

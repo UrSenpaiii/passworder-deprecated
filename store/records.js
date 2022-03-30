@@ -8,36 +8,20 @@ export const state = () => ({
     children: [{
       id: 2,
       title: "Google",
-
-      created: Date.now(),
-      updated: Date.now(),
-      expired: Date.now()
     },{
       id: 3,
       title: "Google",
       username: "vasy@gmail.com",
       password: "12345678",
-      notes: "hello",
       website: "https://google.com",
-      "Телефон": "+1463664324",
-
-      created: Date.now(),
-      updated: Date.now(),
-      expired: Date.now()
+      notes: "hello"
     }, {
       id: 4,
       title: "Facebook",
       username: "89462742625",
       password: "27Tdi88qk4n15fTVss",
-      notes: "",
       website: "https://facebook.com",
-
-      Email: "affda@mail.ya",
-      "Recovery codes": "spidfgbjopadfijdsajvfo  asdjfl$adsjfadosp",
-
-      created: Date.now(),
-      updated: null,
-      expired: null
+      notes: ""
     }, {
       id: 5,
       title: "VKontakte",
@@ -46,25 +30,15 @@ export const state = () => ({
         title: "VK",
         username: "89462742625",
         password: "vbTUBE41iJ1T58si",
-        notes: "Primary",
         website: "https://vk.com",
-
-        Email: "mymail@bk.com",
-
-        created: Date.now(),
-        updated: null,
-        expired: null,
+        notes: "Primary"
       }, {
         id: 7,
         title: "VK",
         username: "89615071175",
         password: "vbTUBE41iJ1T58si",
-        notes: "Secondary",
         website: "https://vk.com",
-
-        created: Date.now(),
-        updated: null,
-        expired: null
+        notes: "Secondary"
       }]
     }]
   }, {
@@ -76,14 +50,10 @@ export const state = () => ({
       username: "89615071175",
       password: "vbTUBsdgreE41iJ1T58sivbTUBsdgreE41iJ1T58si",
       website: "https://vk.com",
-      tags: ["Social network"],
-      created: Date.now(),
-      updated: null,
-      expired: null
     }]
   }],
   isKeyValid: false,
-  active: 0
+  active: 0,
 })
 
 export const mutations = {
@@ -99,9 +69,6 @@ export const mutations = {
   },
   setActiveNode(state, id) {
     state.active = id
-  },
-  addRecord(state, record) {
-    // state.records
   }
 }
 
