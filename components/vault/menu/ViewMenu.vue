@@ -1,6 +1,6 @@
 <template>
   <aside class="col-4 bg-white border-start p-3">
-    <form class="needs-validation" novalidate @submit.prevent="editRecord">
+    <form class="needs-validation" novalidate @submit.prevent="$emit('edit', {menu: 'create'})">
       <div class="d-flex justify-content-between">
         <h5>New Record</h5>
         <div>
@@ -63,8 +63,6 @@ export default {
     },
     copy(value) {
       navigator.clipboard.writeText(value)
-    },
-    editRecord() {
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <v-sidebar/>
+      <v-sidebar v-on:edit="menu = $event.menu; $store.commit('records/setActiveNode', 0)"/>
       <main class="col px-0">
         <div class="d-flex justify-content-between border-bottom p-2">
           <div class="d-flex">
@@ -21,8 +21,7 @@
         </div>
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
-      <component v-if="menu" :is="`v-${menu}-menu`"/>
-      <v-create-menu v-if="currentRecord.length" :record="currentRecord[0]" />
+      <component v-on:edit="menu = $event.menu" :is="`v-${menu}-menu`" v-if="currentRecord.length || menu === 'create'" :record="currentRecord[0] || emptyRecord"/>
     </div>
   </div>
 </template>
@@ -39,9 +38,12 @@ export default {
   },
   data() {
     return {
+      emptyRecord: {
+        title: "", username: "", password: "", notes: "", website: "",
+      },
       search: "",
       layout: "folder",
-      menu: null,
+      menu: "view",
       records: this.$store.state.records.records,
       recordsList: [],
       current: null,

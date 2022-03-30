@@ -9,8 +9,8 @@
           {{ $t("create") }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdown">
-          <li class="dropdown-item"><a class="d-block">{{ $t("record") }}</a></li>
-          <li class="dropdown-item"><a class="d-block">{{ $t("folder") }}</a></li>
+          <li class="dropdown-item"><a @click="$emit('edit', {menu: 'create'})" class="d-block">{{ $t("record") }}</a></li>
+          <li class="dropdown-item"><a @click="$emit('edit', {menu: 'create'})" class="d-block">{{ $t("folder") }}</a></li>
         </ul>
       </div>
       <div class="my-3">

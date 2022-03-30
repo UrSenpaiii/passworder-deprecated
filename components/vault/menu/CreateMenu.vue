@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between">
         <h5>New Record</h5>
         <div>
-          <button class="btn btn-outline-secondary btn-sm" type="button">{{ $t("btn.cancel") }}</button>
+          <button class="btn btn-outline-secondary btn-sm" type="button" @click="$emit('edit', {menu: 'view'})">{{ $t("btn.cancel") }}</button>
           <button class="btn btn-primary btn-sm" type="submit">{{ $t("create") }}</button>
         </div>
       </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="my-4">
         <label class="form-label" for="notes">{{ $t("notes") }}</label>
-        <input id="notes" v-model="record.notes" class="form-control" name="website" type="text">
+        <input id="notes" v-model="record.notes" class="form-control" name="notes" type="text">
       </div>
     </form>
   </aside>
@@ -46,11 +46,11 @@
 import {classUpdate, isEmptyValidation, usernameValidation} from "../../../modules/rules";
 
 export default {
+  props: {record: Object},
   data() {
     return {
       record: {
-        title: "", username: "", password: "", notes: "", website: "",
-        created: Date.now(), expired: Date.now()
+        title: "", username: "", password: "", notes: "", website: ""
       },
       errors: [this.$t("errors.fillField"), ...this.$t("errors.title")],
       errorIndex: -1,
