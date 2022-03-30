@@ -26,6 +26,7 @@ export default {
   props: {recordsList: Array},
   methods: {
     censuredPasswordLength(password) {
+      if (!password) return ""
       let res = ""
       for (let i = 0; i < password.length; i++) res += "*"
       return res
