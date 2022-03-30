@@ -52,6 +52,7 @@ export default {
     decrypt() {
       this.$store.dispatch("records/enterVault", {title: this.id, key: this.key})
       if (this.$store.state.records.isKeyValid) {
+        this.$store.state.records.isKeyValid = false
         document.getElementById("close").click()
         this.$router.push(this.localePath(`/vaults/${this.id}`))
       }
