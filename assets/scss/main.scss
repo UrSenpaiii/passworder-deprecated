@@ -7,10 +7,20 @@
   box-sizing: border-box;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-size: 18px;
   background: $neutral-background;
-  //#202c34
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 [v-cloak] {

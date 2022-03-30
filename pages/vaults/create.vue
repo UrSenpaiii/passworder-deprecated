@@ -3,7 +3,7 @@
     <nuxt-link class="d-inline-flex align-items-center position-absolute text-muted" :to="localePath('/vaults')">
       <i class="bi bi-arrow-left h1 p-1"/> <span class="h3">{{ $t("btn.back") }}</span>
     </nuxt-link>
-    <div class="container my-3">
+    <main class="container my-5 p-4">
       <h3>{{ $t("createVault") }}</h3>
       <div id="warning" class="modal fade">
         <div class="modal-dialog">
@@ -59,7 +59,7 @@
         </div>
         <button class="btn btn-primary" type="submit">{{ $t("btn.submit") }}</button>
       </form>
-    </div>
+    </main>
   </div>
 </template>
 

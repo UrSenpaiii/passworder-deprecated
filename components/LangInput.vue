@@ -1,5 +1,5 @@
 <template>
-  <div class="lang-dropdown my-3">
+  <div class="lang-dropdown mb-3">
     <nuxt-link v-for="local in $i18n.locales" :key="$i18n.locale.code" :to="switchLocalePath(local.code)"
                :src="require(`assets/img/${local.code}.svg`)" class="m-1" width="40px" tag="img" :title="local.name"/>
   </div>

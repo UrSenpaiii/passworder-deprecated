@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container my-5">
     <main class="p-4">
       <h1>{{ $t("registration") }}</h1>
       <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">

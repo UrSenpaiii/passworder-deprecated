@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container my-5">
     <main class="p-4">
       <h1>{{ $t("login") }}</h1>
       <form class="needs-validation" method="post" novalidate @submit.prevent="submitValidation">
@@ -25,8 +25,6 @@
       </form>
       <br>
       <nuxt-link :to="localePath('/registration')">{{ $t("registration") }}</nuxt-link>
-      <br>
-      <nuxt-link :to="localePath('/password/restore')">{{ $t("forgotPassword") }}</nuxt-link>
     </main>
   </div>
 </template>

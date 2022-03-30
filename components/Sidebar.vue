@@ -24,6 +24,10 @@
 </template>
 
 <style scoped lang="scss">
+aside {
+  height: calc(100vh - 228px);
+}
+
 .dropdown-toggle::after {
   content: url("assets/img/plus-lg.svg");
   vertical-align: -.15em;
