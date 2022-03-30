@@ -12,7 +12,6 @@ export const state = () => ({
       website: "https://google.com",
       "Телефон": "+1463664324",
 
-      tags: ["service", "email"],
       created: Date.now(),
       updated: Date.now(),
       expired: Date.now()
@@ -26,7 +25,6 @@ export const state = () => ({
       Email: "affda@mail.ya",
       "Recovery codes": "spidfgbjopadfijdsajvfo  asdjfl$adsjfadosp",
 
-      tags: ["Social network"],
       created: Date.now(),
       updated: null,
       expired: null
@@ -41,7 +39,6 @@ export const state = () => ({
 
         Email: "mymail@bk.com",
 
-        tags: ["Social network"],
         created: Date.now(),
         updated: null,
         expired: null,
@@ -51,7 +48,7 @@ export const state = () => ({
         password: "vbTUBE41iJ1T58si",
         notes: "Secondary",
         website: "https://vk.com",
-        tags: ["Social network"],
+
         created: Date.now(),
         updated: null,
         expired: null

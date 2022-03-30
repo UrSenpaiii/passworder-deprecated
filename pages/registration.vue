@@ -32,7 +32,7 @@
                  class="form-control d-inline-block" maxlength="30" minlength="8" name="password" required
                  @input="validatePasswordField">
           <i :class="'position-absolute bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'" style="margin: 6px 0 6px -30px;"
-             @click="showPassword = !showPassword"></i>
+             @click="showPassword = !showPassword"/>
           <div class="invalid-feedback">
             {{ errors.password[errorIndexes[2]] }}
           </div>

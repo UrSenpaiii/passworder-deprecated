@@ -27,6 +27,7 @@
   "copy": "Copy",
   "create": "Create",
   "createVault": "Create vault",
+  "customField": "Custom field",
   "delete": "Delete",
   "duplicate": "Duplicate",
   "edit": "Edit",
@@ -110,6 +111,7 @@
     }
   },
   "myVault": "My vault",
+  "notes": "Notes",
   "password": "Password",
   "profile": "Profile",
   "record": "Record",

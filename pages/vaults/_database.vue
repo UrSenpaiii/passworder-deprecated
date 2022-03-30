@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <v-sidebar/>
-      <main class="col-10 px-0">
+      <main class="col px-0">
         <div class="d-flex justify-content-between border-bottom p-2">
           <div class="d-flex">
             <div class="navbar-nav">
@@ -24,6 +24,8 @@
         </div>
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
+      <component v-if="menu" :is="`v-${menu}-menu`"/>
+      <v-create-menu/>
     </div>
   </div>
 </template>
@@ -42,6 +44,7 @@ export default {
     return {
       search: "",
       layout: "folder",
+      menu: null,
       records: this.$store.state.records.records,
       recordsList: null,
       current: null
