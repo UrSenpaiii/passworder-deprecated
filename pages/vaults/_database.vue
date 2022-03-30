@@ -11,9 +11,6 @@
                 <span class="input-group-text bg-white border-0" id="basic-addon1"><i class="bi bi-search"></i></span>
               </div>
             </div>
-            <div class="m-1 ">
-              <i class="bi bi-funnel-fill"></i>
-            </div>
           </div>
           <div>
             <a @click="layout='folder'" :class="['mx-2 btn btn-light bi bi-folder-fill', activeLayout('folder')]"/>
@@ -25,7 +22,7 @@
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
       <component v-if="menu" :is="`v-${menu}-menu`"/>
-      <v-view-menu v-if="currentRecord.length" :record="currentRecord[0]" />
+      <v-create-menu v-if="currentRecord.length" :record="currentRecord[0]" />
     </div>
   </div>
 </template>
@@ -57,7 +54,7 @@ export default {
     }
   },
   mounted() {
-    this.recordsList = this.asList(this.records)[0]
+    this.recordsList = ([].concat(...this.asList(this.records)))
   },
   methods: {
     activeLayout(layout) {
@@ -72,6 +69,7 @@ export default {
   },
   watch: {
     search: function () {
+      this.layout = "table"
       let pureRecords = this.asList(this.$store.state.records.records)[0]
       return this.recordsList = this.search === "" ? pureRecords :
                                                      pureRecords.filter(el => el.title.match(new RegExp(this.search, "ig")))
