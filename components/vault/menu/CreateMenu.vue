@@ -73,17 +73,21 @@ export default {
       if (form.checkValidity()) this.addRecord()
     },
     addRecord() {
+
       console.log(this.record)
     }
   }
 }
 </script>
 
-<style scoped>
-.form-control.is-valid {
-  border-color: #86b7fe;
-  box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-  background-image: none;
+<style scoped lang="scss">
+.form-control {
+  border: 1px solid #ced4da;
+  &.is-valid:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+    background-image: none;
+  }
 }
 
 sup {

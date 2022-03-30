@@ -1,7 +1,6 @@
 <template>
   <div class="row mx-0">
-    <v-grid-item v-for="record in recordsList" :key="record.id"
-                 :title="record.title" :username="record.username" :password="record.password"/>
+    <v-grid-item v-for="record in recordsList" :key="record.id" :node="record"/>
   </div>
 </template>
 

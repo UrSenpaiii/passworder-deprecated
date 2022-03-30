@@ -10,7 +10,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(record, i) in recordsList" :key="record.id">
+    <tr v-for="(record, i) in recordsList" :key="record.id"
+        :class="record.id === $store.state.records.active ? 'activeNode' : ''" @click="active(record.id)">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ record.title }}</td>
       <td>{{ record.username }}</td>
@@ -30,6 +31,9 @@ export default {
       let res = ""
       for (let i = 0; i < password.length; i++) res += "*"
       return res
+    },
+    active(id) {
+      this.$store.commit("records/setActiveNode", id)
     }
   }
 }

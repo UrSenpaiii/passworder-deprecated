@@ -97,6 +97,9 @@ export const mutations = {
   setKeyValidity(state, keyValidity) {
     state.isKeyValid = keyValidity
   },
+  setActiveNode(state, id) {
+    state.active = id
+  },
   addRecord(state, record) {
     // state.records
   }
