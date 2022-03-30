@@ -10,7 +10,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(record, i) in recordsList">
+    <tr v-for="(record, i) in recordsList" :key="record.id">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ record.title }}</td>
       <td>{{ record.username }}</td>

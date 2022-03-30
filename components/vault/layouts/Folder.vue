@@ -4,9 +4,9 @@
       <i :class="'bi h3 ' + icon" /> <span class="h3">{{ groupTitle }}</span>
     </div>
     <div v-if="opened">
-      <v-folder-item class="ms-3" v-for="(record, i) in list" :key="record.title + i"
+      <v-folder-item class="ms-3" v-for="(record, i) in list" :key="record.id"
                      :num="i+1" :title="record.title" :username="record.username"/>
-      <test class="ms-3" v-for="(node, i) in children" :key="node.title + i"
+      <test class="ms-3" v-for="node in children" :key="node.id"
                 :groupTitle="node.title" :node="node.children"/>
     </div>
   </div>

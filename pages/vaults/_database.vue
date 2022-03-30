@@ -47,7 +47,8 @@ export default {
       menu: null,
       records: this.$store.state.records.records,
       recordsList: null,
-      current: null
+      current: null,
+      id: 0
     }
   },
   mounted() {
@@ -58,6 +59,7 @@ export default {
       return this.layout === layout ? "border" : ""
     },
     asList(node) {
+      this.id += 1
       if (Array.isArray(node)) return node.map(el => this.asList(el))
       if (!node.children) return [node]
       return [].concat(...node.children.map(ch => this.asList(ch)))

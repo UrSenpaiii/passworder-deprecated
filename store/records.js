@@ -3,14 +3,17 @@ import {encrypt, decrypt} from "@/modules/encryption";
 export const state = () => ({
   encryptedData: [],
   records: [{
+    id: 1,
     title: "Default Group",
     children: [{
+      id: 2,
       title: "Google",
 
       created: Date.now(),
       updated: Date.now(),
       expired: Date.now()
     },{
+      id: 3,
       title: "Google",
       username: "vasy@gmail.com",
       password: "12345678",
@@ -22,6 +25,7 @@ export const state = () => ({
       updated: Date.now(),
       expired: Date.now()
     }, {
+      id: 4,
       title: "Facebook",
       username: "89462742625",
       password: "27Tdi88qk4n15fTVss",
@@ -35,8 +39,10 @@ export const state = () => ({
       updated: null,
       expired: null
     }, {
+      id: 5,
       title: "VKontakte",
       children: [{
+        id: 6,
         title: "VK",
         username: "89462742625",
         password: "vbTUBE41iJ1T58si",
@@ -49,6 +55,7 @@ export const state = () => ({
         updated: null,
         expired: null,
       }, {
+        id: 7,
         title: "VK",
         username: "89615071175",
         password: "vbTUBE41iJ1T58si",
@@ -61,8 +68,10 @@ export const state = () => ({
       }]
     }]
   }, {
+    id: 8,
     title: "Not default",
     children: [{
+      id: 9,
       title: "Instagram",
       username: "89615071175",
       password: "vbTUBsdgreE41iJ1T58sivbTUBsdgreE41iJ1T58si",
@@ -73,7 +82,8 @@ export const state = () => ({
       expired: null
     }]
   }],
-  isKeyValid: false
+  isKeyValid: false,
+  active: 0
 })
 
 export const mutations = {
@@ -86,6 +96,9 @@ export const mutations = {
   },
   setKeyValidity(state, keyValidity) {
     state.isKeyValid = keyValidity
+  },
+  addRecord(state, record) {
+    // state.records
   }
 }
 
