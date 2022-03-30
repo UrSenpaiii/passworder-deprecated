@@ -4,8 +4,8 @@
       <div class="d-flex justify-content-between">
         <h5>New Record</h5>
         <div>
-          <button class="btn btn-outline-secondary btn-sm" type="button">cancel</button>
-          <button class="btn btn-primary btn-sm" type="submit">create</button>
+          <button class="btn btn-outline-secondary btn-sm" type="button">{{ $t("btn.cancel") }}</button>
+          <button class="btn btn-primary btn-sm" type="submit">{{ $t("create") }}</button>
         </div>
       </div>
 
@@ -38,8 +38,6 @@
         <label class="form-label" for="notes">{{ $t("notes") }}</label>
         <input id="notes" v-model="record.notes" class="form-control" name="website" type="text">
       </div>
-
-<!--      <a class="h4" @click="addCustomField"><i class="bi bi-plus-circle"/> {{ $t("customField") }}</a>-->
     </form>
   </aside>
 </template>

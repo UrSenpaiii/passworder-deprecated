@@ -18,9 +18,10 @@
   },
   "btn": {
     "back": "Back",
-    "cancel": "Сancel",
+    "cancel": "Cansel",
     "continue": "Continue",
     "enter": "Enter",
+    "hide": "Hide",
     "save": "Save",
     "submit": "Submit"
   },
