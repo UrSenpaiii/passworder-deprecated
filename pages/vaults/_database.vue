@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <v-sidebar v-on:edit="menu = $event.menu; $store.commit('records/setActiveNode', 0)"/>
+      <v-sidebar :currentFolder="currentFolder" v-on:edit="menu = $event.menu; $store.commit('records/setActiveNode', currentFolder)"/>
       <main class="col px-0">
         <div class="d-flex justify-content-between border-bottom p-2">
           <div class="d-flex">
@@ -21,7 +21,8 @@
         </div>
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
-      <component v-on:edit="menu = $event.menu" :is="`v-${menu}-menu`" v-if="currentRecord.length || menu === 'create'" :record="currentRecord[0] || emptyRecord"/>
+      <component v-on:edit="menu = $event.menu" :is="`v-${menu}-menu`" v-if="currentRecord.length || menu === 'create'"
+                 :record="currentRecord[0]" :totalId="id" :currentFolder="currentFolder"/>
     </div>
   </div>
 </template>
@@ -38,21 +39,22 @@ export default {
   },
   data() {
     return {
-      emptyRecord: {
-        title: "", username: "", password: "", notes: "", website: "",
-      },
       search: "",
       layout: "folder",
       menu: "view",
       records: this.$store.state.records.records,
       recordsList: [],
       current: null,
-      id: 0
+      id: 0,
+      folderIds: []
     }
   },
   computed: {
     currentRecord() {
       return this.recordsList.filter(el => el.id === this.$store.state.records.active)
+    },
+    currentFolder() {
+      return this.folderIds.filter(el => el === this.$store.state.records.active)[0]
     }
   },
   mounted() {
@@ -66,6 +68,7 @@ export default {
       this.id += 1
       if (Array.isArray(node)) return node.map(el => this.asList(el))
       if (!node.children) return [node]
+      this.folderIds.push(node.id)
       return [].concat(...node.children.map(ch => this.asList(ch)))
     }
   },

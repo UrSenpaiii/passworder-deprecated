@@ -4,14 +4,16 @@
       <div class="d-flex justify-content-between">
         <h5>New Record</h5>
         <div>
-          <button class="btn btn-outline-secondary btn-sm" type="button" @click="$emit('edit', {menu: 'view'})">{{ $t("btn.cancel") }}</button>
+          <button class="btn btn-outline-secondary btn-sm" type="button" @click="$emit('edit', {menu: 'view'})">
+            {{ $t("btn.cancel") }}
+          </button>
           <button class="btn btn-primary btn-sm" type="submit">{{ $t("create") }}</button>
         </div>
       </div>
 
       <div class="my-4">
         <label class="form-label" for="title">{{ $t("title") }}</label><sup>*</sup>
-        <input id="title" v-model="record.title" class="form-control" maxlength="30" minlength="3" name="title"
+        <input id="title" v-model="newRecord.title" class="form-control" maxlength="30" minlength="3" name="title"
                required type="text" @input="validateTitleField">
         <div class="invalid-feedback">
           {{ errors[errorIndex] }}
@@ -19,12 +21,12 @@
       </div>
       <div class="my-4">
         <label class="form-label" for="username">{{ $t("login") }}</label>
-        <input id="username" v-model="record.username" class="form-control" name="username" type="text">
+        <input id="username" v-model="newRecord.username" class="form-control" name="username" type="text">
       </div>
       <div class="my-4">
         <label class="form-label" for="password">{{ $t("password") }}</label>
         <div class="d-flex">
-          <input id="password" v-model="record.password" class="form-control" name="password"
+          <input id="password" v-model="newRecord.password" class="form-control" name="password"
                  :type="showPassword ? 'text' : 'password'">
           <i :class="'bi bi-eye' + [showPassword ? '-slash' : ''] + '-fill'" style="margin: 6px 0 6px -30px;"
              @click="showPassword = !showPassword"/>
@@ -32,11 +34,11 @@
       </div>
       <div class="my-4">
         <label class="form-label" for="website">{{ $t("website") }}</label>
-        <input id="website" v-model="record.website" class="form-control" name="website" type="text">
+        <input id="website" v-model="newRecord.website" class="form-control" name="website" type="text">
       </div>
       <div class="my-4">
         <label class="form-label" for="notes">{{ $t("notes") }}</label>
-        <input id="notes" v-model="record.notes" class="form-control" name="notes" type="text">
+        <input id="notes" v-model="newRecord.notes" class="form-control" name="notes" type="text">
       </div>
     </form>
   </aside>
@@ -46,16 +48,19 @@
 import {classUpdate, isEmptyValidation, usernameValidation} from "../../../modules/rules";
 
 export default {
-  props: {record: Object},
+  props: {record: Object, totalId: Number, currentFolder: Number},
   data() {
     return {
-      record: {
-        title: "", username: "", password: "", notes: "", website: ""
+      newRecord: {
+        id: this.totalId, title: "", username: "", password: "", notes: "", website: ""
       },
       errors: [this.$t("errors.fillField"), ...this.$t("errors.title")],
       errorIndex: -1,
       showPassword: false
     }
+  },
+  mounted() {
+    this.newRecord = {...this.record}
   },
   methods: {
     validateTitleField(event) {
@@ -68,11 +73,24 @@ export default {
       this.errorIndex = isEmptyValidation(form[2].value, this.errorIndex)
       classUpdate(form[2], this.errorIndex)
 
-      if (form.checkValidity()) this.addRecord()
+      if (form.checkValidity()) {
+        let records = this.$store.state.records.records
+        this.currentFolder ? this.createRecord(records) : this.editRecords(records)
+        this.$store.commit("records/setRecords", records)
+      }
     },
-    addRecord() {
-
-      console.log(this.record)
+    createRecord(node) {
+      if (Array.isArray(node)) node.map(el => this.editRecords(el))
+      if (node.children) {
+        if (node.id === this.currentFolder) node.children.push(this.newRecord)
+        else node.children.map(ch => this.editRecords(ch))
+      }
+    },
+    editRecords(node) {
+      if (Array.isArray(node)) node.map(el => this.editRecords(el))
+      if (!node.children) {
+        if (node.id === this.$store.state.records.active) node = this.newRecord
+      } else node.children.map(ch => this.editRecords(ch))
     }
   }
 }
@@ -81,6 +99,7 @@ export default {
 <style scoped lang="scss">
 .form-control {
   border: 1px solid #ced4da;
+
   &.is-valid:focus {
     border-color: #86b7fe;
     box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
