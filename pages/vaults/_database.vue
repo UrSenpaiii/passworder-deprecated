@@ -21,7 +21,7 @@
         </div>
         <component :is="`v-${layout}-layout`" :records="records" :recordsList="recordsList"/>
       </main>
-      <component v-on:edit="menu = $event.menu" :is="`v-${menu}-menu`" v-if="currentRecord.length || menu === 'create'"
+      <component v-on:edit="menu = $event.menu" v-on:changed="changeRecords($event)" :is="`v-${menu}-menu`" v-if="currentRecord.length || menu === 'create'"
                  :record="currentRecord[0]" :totalId="id" :currentFolder="currentFolder"/>
     </div>
   </div>
@@ -61,6 +61,10 @@ export default {
     this.recordsList = ([].concat(...this.asList(this.records)))
   },
   methods: {
+    changeRecords(e) {
+      this.records = e.records
+      this.recordsList = ([].concat(...this.asList(this.records)))
+    },
     activeLayout(layout) {
       return this.layout === layout ? "border" : ""
     },

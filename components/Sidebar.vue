@@ -56,7 +56,7 @@ export default {
   props: {currentFolder: Number},
   methods: {
     wrapper() {
-      let records = this.$store.state.records.records
+      let records = JSON.parse(JSON.stringify(this.$store.state.records.records))
       this.deleteRecord(records)
       this.$store.commit("records/setRecords", records)
     },

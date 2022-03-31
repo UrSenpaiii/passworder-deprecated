@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {classUpdate, isEmptyValidation, usernameValidation} from "../../../modules/rules";
+import {classUpdate, isEmptyValidation, usernameValidation} from "@/modules/rules";
 
 export default {
   props: {record: Object, totalId: Number, currentFolder: Number},
@@ -74,9 +74,11 @@ export default {
       classUpdate(form[2], this.errorIndex)
 
       if (form.checkValidity()) {
-        let records = this.$store.state.records.records
+        let records = JSON.parse(JSON.stringify(this.$store.state.records.records))
         this.currentFolder ? this.createRecord(records) : this.editRecords(records)
+        console.log(records)
         this.$store.commit("records/setRecords", records)
+        this.$emit("changed", {records, menu: ""})
       }
     },
     createRecord(node) {
@@ -89,7 +91,8 @@ export default {
     editRecords(node) {
       if (Array.isArray(node)) node.map(el => this.editRecords(el))
       if (!node.children) {
-        if (node.id === this.$store.state.records.active) node = this.newRecord
+        if (node.id === this.$store.state.records.active)
+          Object.keys(node).map(prop => node[prop] = this.newRecord[prop])
       } else node.children.map(ch => this.editRecords(ch))
     }
   }
