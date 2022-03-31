@@ -9,6 +9,7 @@
     "success": "You successfully activated your account"
   },
   "active": "Active",
+  "addFolder": "Add folder",
   "adminPanel": "Admin Panel",
   "alerts": {
     "warning": {
