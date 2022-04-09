@@ -80,6 +80,16 @@ export const actions = {
     data.map(el => {delete el.id; delete el.pid})
     commit("setEncryptedData", data)
   },
+  async sentVaultsData({commit, state}) {
+    let userId = this.$auth.user.id
+    await this.$axios.post(`/vaults/${userId}`, {encData: encrypt(state.records, "aA1!aaaaaaaa")})
+      .catch(e => console.log(e))
+    let {data} = await this.$axios.get(`/vaults/${userId}`)
+      .catch(e => console.log(e))
+    data.map(el => {delete el.id; delete el.pid})
+    console.log(data)
+    commit("setEncryptedData", data)
+  },
   async createVault({commit, dispatch}, {title, masterPassword}) {
     let pid = this.$auth.user.id
     let encryptedData = encrypt([], masterPassword)

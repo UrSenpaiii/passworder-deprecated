@@ -78,6 +78,7 @@ export default {
         this.currentFolder ? this.createRecord(records) : this.editRecords(records)
         console.log(records)
         this.$store.commit("records/setRecords", records)
+        this.$store.dispatch("records/sentVaultsData")
         this.$emit("changed", {records, menu: ""})
       }
     },
