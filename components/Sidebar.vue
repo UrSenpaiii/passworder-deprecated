@@ -3,7 +3,7 @@
     <div class="align-items-baseline d-flex my-3">
       <h2 class="text-white">{{ $t("myVault") }}</h2> <i class="bi bi-list mx-3 text-white"/>
     </div>
-    <div class="my-3">
+    <div class="my-3" v-if="$route.path !== '/vaults'">
       <nuxt-link :to="localePath('/vaults')" class="btn btn-outline-light bi bi-shield-lock"> {{
           $t("lock")
         }}
