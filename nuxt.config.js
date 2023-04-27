@@ -1,4 +1,4 @@
-export default {
+export default defineNuxtConfig({
   head: {
     title: "Passworder",
     meta: [
@@ -17,44 +17,11 @@ export default {
     ]
   },
 
-  css: ["@/assets/scss/main"],
+  css: ["~/assets/scss/main.scss"],
   components: [{path: "~/components", pathPrefix: false, prefix: "v"}],
   router: {middleware: "auth"},
 
   modules: [
-    ["@nuxtjs/axios", {
-      baseURL: "http://localhost:8080/api"
-    }],
-    ["@nuxtjs/auth-next", {
-      strategies: {
-        local: {
-          scheme: "refresh",
-          token: {
-            property: "access_token",
-            maxAge: 60 * 60,
-            global: true,
-            type: ""
-          },
-          refreshToken: {
-            property: "refresh_token",
-            data: "refresh_token",
-            maxAge: 60 * 60 * 24 * 30
-          },
-          user: {
-            property: false
-          },
-          endpoints: {
-            login: {url: "/auth/login", method: "post"},
-            refresh: {url: "/auth/refresh", method: "post"},
-            user: {url: "/auth/user", method: "get"},
-            logout: {url: "/auth/logout", method: "post"}
-          }
-        }
-      },
-      redirect: {
-        home: "/vaults" // FIXME i18n fucked all up :(
-      }
-    }],
     ["@nuxtjs/i18n", {
       baseURL: "http://localhost:3000",
       locales: [
@@ -63,21 +30,15 @@ export default {
       ],
       langDir: "locals",
       defaultLocale: "en",
-      vueI18n: "~/conf/i18n.js",
+      vueI18n: "conf/i18n.js",
       detectBrowserLanguage: {
         alwaysRedirect: true
       }
-    }],
-    ["@nuxtjs/pwa", {
-      manifest: {
-        lang: "en"
-      }
     }]
-  ],
-
-  env: {
-    scheme: "https",
-    domain: "passworder.com",
-    name: "Passworder"
-  }
-}
+    // ["@nuxtjs/pwa", {
+    //   manifest: {
+    //     lang: "en"
+    //   }
+    // }]
+  ]
+})

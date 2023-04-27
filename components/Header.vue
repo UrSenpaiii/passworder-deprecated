@@ -6,7 +6,7 @@
         <nuxt-link :to="localePath('/vaults')" class="navbar-brand me-auto ms-5">{{ $t("vault") }}</nuxt-link>
 
 
-        <div class="d-flex me-4" v-if="$auth.loggedIn">
+        <div class="d-flex me-4" v-if="true">
           <div class="dropdown">
             <div class="d-flex dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="h2 text-white bi-person-circle"/>

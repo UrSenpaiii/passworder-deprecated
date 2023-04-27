@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {classUpdate, isEmptyValidation, usernameValidation} from "@/modules/rules";
+import {classUpdate, isEmptyValidation, usernameValidation} from "~/utils/rules";
 
 export default {
   props: {record: Object, totalId: Number, currentFolder: Number},

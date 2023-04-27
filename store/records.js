@@ -1,4 +1,4 @@
-import {encrypt, decrypt} from "@/modules/encryption";
+import {encrypt, decrypt} from "/modules/encryption";
 
 export const state = () => ({
   encryptedData: [],

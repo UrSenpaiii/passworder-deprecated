@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {isEmptyValidation, classUpdate} from "~/modules/rules";
+import {isEmptyValidation, classUpdate} from "~/utils/rules";
 
 export default {
   props: {id: String},
